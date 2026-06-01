@@ -1,0 +1,49 @@
+# Laravel & general
+/.phpunit.cache
+/node_modules
+/vendor
+
+# Public build / hot reload
+/public/build
+/public/hot
+/public/storage
+
+# Environment files
+.env
+.env.*
+.env.backup
+.env.production
+
+# Logs
+*.log
+/npm-debug.log
+/yarn-error.log
+
+# Storage
+/storage/*.key
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+
+# Homestead
+Homestead.json
+Homestead.yaml
+
+# Composer
+auth.json
+
+# IDEs and editors
+/.idea
+/.vscode
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Misc
+/.fleet
+
+# Coverage and build artifacts
+/coverage
+/.sass-cache
