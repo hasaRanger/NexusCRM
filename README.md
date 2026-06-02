@@ -1,66 +1,150 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# NexusCRM
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+NexusCRM is a clean, modern, and highly responsive Customer Relationship Management (CRM) platform designed for modern sales and operations teams. It streamlines your sales pipeline, automates invoicing and billing, tracks customer engagements, and provides visual, real-time insights into your business metrics.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Core Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Dynamic Dashboard**:
+  - Live statistics overview (Total Customers, Proposals, Invoices, and Transactions).
+  - **Revenue progress gauge** (using ApexCharts) showing live earnings against targeted revenue.
+  - **Invoice status distributions** represented as an interactive Pie Chart (Paid, Sent, Draft).
+  - **Recent Transactions Feed** showcasing the latest activities.
+- **Customer Hub**: Centrally manage customer profiles, toggle active status, and track historical proposals/invoices.
+- **Proposal Management**: Draft custom proposals with validity terms and update status directly from your pipeline.
+- **Invoicing & Billing**: Auto-generate unique invoices, manage payment status, and send beautiful HTML invoices via email.
+- **Stripe Payments Integration**: Integrated checkout sessions and Stripe Webhook handlers to automatically track and update transaction logs when payments are completed.
+- **Transaction Logs**: Global log tracing payment references, amount, dates, and gateways.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Backend
+- **Framework**: Laravel 10
+- **Language**: PHP 8.1.25
+- **Authentication**: Laravel Breeze (scaffolded with Vue 3 & Inertia)
+- **Database**: Eloquent ORM (SQLite / MySQL / PostgreSQL support)
+- **Payment Gateway**: Stripe API (`stripe/stripe-php` Integration)
+- **Email Delivery / Testing**: Mailtrap (sandbox SMTP service)
+- **Emailing Layouts**: Laravel Mailables (Markdown/HTML templates)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Frontend
+- **Framework**: Vue 3 (Composition API / Script Setup)
+- **Integration**: Inertia.js (Modern monolith single-page app structure)
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Visualization**: Vue3 ApexCharts (Pie Charts, Semi-Circular Gauge Charts)
+- **Icons**: Lucide Vue Next
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 📂 Project Structure
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```
+├── app/
+│   ├── Http/Controllers/       # Customer, Proposal, Invoice, Stripe, and Dashboard Controllers
+│   ├── Mail/                   # Mail configurations (InvoiceMail, WelcomeMail)
+│   └── Models/                 # Eloquent Database Models (User, Customer, Proposal, Invoice, Transaction)
+├── bootstrap/                  # Framework bootstrap configuration
+├── config/                     # Application configurations (database, mail, services, inertia)
+├── database/
+│   ├── factories/              # Factories for testing and seeding sample database rows
+│   ├── migrations/             # Schema migration files for tables structure
+│   └── seeders/                # Database seeders (sets up default admin credentials and dummy data)
+├── public/                     # Static media and build index files (e.g., logo, favicon)
+├── resources/
+│   ├── css/                    # Core styles (app.css)
+│   ├── js/
+│   │   ├── Components/         # Reusable Vue components (Charts, StatusBadges, Confirmation Modals)
+│   │   ├── Layouts/            # App view shells (AppLayout with sidebar navigation, GuestLayout)
+│   │   ├── Pages/              # Page views (Dashboard, Customers, Proposals, Invoices, Profile)
+│   │   └── app.js              # Application entry point
+│   └── views/                  # Base Blade layout template
+├── routes/                     # Application routing (web.php, auth.php, api.php)
+├── tests/                      # Automated Feature and Unit test files
+├── tailwind.config.js          # Tailwind styling presets configuration
+└── vite.config.js              # Vite assembly settings
+```
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## ⚙️ Setup and Installation
 
-## Contributing
+Follow these steps to set up NexusCRM locally on your machine.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prerequisites
+- **PHP** >= 8.1
+- **Composer** (PHP Package Manager)
+- **Node.js** & **npm**
 
-## Code of Conduct
+### Step 1: Clone the Repository
+```bash
+git clone <repository-url>
+cd crm-app
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Step 2: Install Backend Dependencies
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+### Step 3: Install Frontend Dependencies
+```bash
+npm install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Step 4: Configure Environment Settings
+Copy the template configuration file to create your local `.env`:
+```bash
+cp .env.example .env
+```
+Open `.env` and fill in your local system details:
+- **Database Connection**: Set up SQLite (e.g., `DB_CONNECTION=sqlite`, `DB_DATABASE=database.sqlite`) or configure your MySQL/PostgreSQL server details.
+- **Mail Configuration**: Set up Mailtrap or SMTP credentials to test invoice delivery.
+- **Stripe Credentials**: Insert your Stripe API public key, secret key, and webhook signing secret.
 
-## License
+### Step 5: Initialize Application Keys
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Step 6: Migrations & Seeders
+Run database schema builds and populate dummy records:
+```bash
+php artisan migrate --seed
+```
+*Note: Seeding creates a default administrator user:*
+- **Email**: `admin@example.com`
+- **Password**: `password`
+
+### Step 7: Run the Application
+Open two terminal windows to boot the servers:
+
+**Terminal 1 (Backend Artisan Server):**
+```bash
+php artisan serve
+```
+
+**Terminal 2 (Frontend Vite Compiler):**
+```bash
+npm run dev
+```
+
+Your app will be live and ready at `http://localhost:8000`.
+
+---
+
+## 🧪 Running Tests
+
+NexusCRM has complete test coverage for all features (Auth, Profile, Customers, Proposals, and Invoices):
+```bash
+php artisan test
+```
+
+---
+
+## 📝 License
+
+NexusCRM is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
