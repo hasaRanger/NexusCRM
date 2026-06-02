@@ -1,134 +1,138 @@
 <template>
-  <div class="min-h-screen bg-gray-100">
-    <!-- Flash Messages -->
-    <FlashMessage />
+  <div class="min-h-screen bg-gray-100 flex">
+    
+    <nav class="w-64 bg-white shadow-lg flex flex-col justify-between sticky top-0 h-screen z-20">
+      
+      <div>
+        <div class="h-16 flex items-center px-6 border-b border-gray-100">
+          <div class="text-3xl font-extrabold text-gray-900">CRM</div>
+        </div>
+        
+        <div class="flex flex-col space-y-1 mt-6 px-3">
+          <Link
+            href="/dashboard"
+            :class="[
+              isActive('/dashboard')
+                ? 'bg-indigo-50 text-indigo-700'
+                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+            ]"
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="/customers"
+            :class="[
+              isActive('/customers')
+                ? 'bg-indigo-50 text-indigo-700'
+                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+            ]"
+          >
+            Customers
+          </Link>
+          <Link
+            href="/proposals"
+            :class="[
+              isActive('/proposals')
+                ? 'bg-indigo-50 text-indigo-700'
+                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+            ]"
+          >
+            Proposals
+          </Link>
+          <Link
+            href="/invoices"
+            :class="[
+              isActive('/invoices')
+                ? 'bg-indigo-50 text-indigo-700'
+                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+            ]"
+          >
+            Invoices
+          </Link>
+          <Link
+            href="/transactions"
+            :class="[
+              isActive('/transactions')
+                ? 'bg-indigo-50 text-indigo-700'
+                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+            ]"
+          >
+            Transactions
+          </Link>
+        </div>
+      </div>
 
-    <!-- Navigation Bar -->
-    <nav class="bg-white shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <!-- Left side - Logo and Links -->
-          <div class="flex items-center space-x-10">
-            <div class="text-3xl font-extrabold text-gray-900">CRM</div>
-            <div class="hidden md:flex space-x-1 ml-10">
-              <Link
-                href="/dashboard"
-                :class="[
-                  isActive('/dashboard')
-                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                    : 'text-gray-600 hover:text-gray-900 border-b-2 border-transparent',
-                  'px-3 py-2 text-sm font-medium transition-colors'
-                ]"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/customers"
-                :class="[
-                  isActive('/customers')
-                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                    : 'text-gray-600 hover:text-gray-900 border-b-2 border-transparent',
-                  'px-3 py-2 text-sm font-medium transition-colors'
-                ]"
-              >
-                Customers
-              </Link>
-              <Link
-                href="/proposals"
-                :class="[
-                  isActive('/proposals')
-                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                    : 'text-gray-600 hover:text-gray-900 border-b-2 border-transparent',
-                  'px-3 py-2 text-sm font-medium transition-colors'
-                ]"
-              >
-                Proposals
-              </Link>
-              <Link
-                href="/invoices"
-                :class="[
-                  isActive('/invoices')
-                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                    : 'text-gray-600 hover:text-gray-900 border-b-2 border-transparent',
-                  'px-3 py-2 text-sm font-medium transition-colors'
-                ]"
-              >
-                Invoices
-              </Link>
-              <Link
-                href="/transactions"
-                :class="[
-                  isActive('/transactions')
-                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                    : 'text-gray-600 hover:text-gray-900 border-b-2 border-transparent',
-                  'px-3 py-2 text-sm font-medium transition-colors'
-                ]"
-              >
-                Transactions
-              </Link>
+      <div class="p-4 border-t border-gray-200 relative">
+        <button
+          @click="isProfileOpen = !isProfileOpen"
+          class="flex items-center w-full space-x-3 text-gray-700 hover:text-gray-900 focus:outline-none rounded-md p-2 hover:bg-gray-50 transition-colors"
+        >
+          <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+            {{ userInitial }}
+          </div>
+          <span class="text-sm font-medium flex-1 text-left truncate">{{ $page.props.auth.user.name }}</span>
+          <ChevronRight class="w-4 h-4 text-gray-400" />            
+        </button>
+
+        <div
+          v-if="isProfileOpen"
+          @click="isProfileOpen = false"
+          class="fixed inset-0 z-40"
+        ></div>
+
+        <div
+          v-if="isProfileOpen"
+          class="absolute bottom-4 left-full ml-2 w-56 bg-white rounded-lg shadow-xl z-50 border border-gray-200"
+        >
+          <div class="flex flex-row px-4 py-3 border-b border-gray-200">
+            <User class="w-5 h-5 text-gray-400 mt-1" />
+            <div class="ml-3 overflow-hidden">
+                <p class="text-sm font-medium text-gray-900 truncate">{{ $page.props.auth.user.name }}</p>
+                <p class="text-xs text-gray-500 truncate">{{ $page.props.auth.user.email }}</p>
             </div>
           </div>
-
-          <!-- Right side - Profile Dropdown -->
-          <div class="relative">
+          <form @submit.prevent="logout" class="p-2">
             <button
-              @click="isProfileOpen = !isProfileOpen"
-              class="flex items-center space-x-2 text-gray-700 hover:text-gray-900 focus:outline-none"
+              type="submit"
+              class="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 rounded-md transition-colors relative z-10"
             >
-              <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold">
-                {{ userInitial }}
-              </div>
-              <span class="text-sm font-medium hidden sm:inline">{{ $page.props.auth.user.name }}</span>
-            <ChevronDown class="w-4 h-4 text-gray-600" />            
+             <LogOut class="w-4 h-4 text-red-600" />
+             <span class="ml-3">Logout</span>
             </button>
-
-            <!-- Dropdown Menu -->
-            <Teleport to="body">
-              <div
-                v-if="isProfileOpen"
-                @click="isProfileOpen = false"
-                class="fixed inset-0 z-40"
-              />
-            </Teleport>
-            <div
-              v-if="isProfileOpen"
-              class="absolute right-0 mt-2 w-52 bg-white rounded-lg shadow-lg z-50 border border-gray-200"
-            >
-              <div class="flex flex-row px-4 py-3 border-b border-gray-200">
-                <User class="w-5 h-5 text-gray-400 mt-1" />
-                <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-900">{{ $page.props.auth.user.name }}</p>
-                    <p class="text-xs text-gray-500">{{ $page.props.auth.user.email }}</p>
-                </div>
-              </div>
-              <form @submit.prevent="logout" class="p-2">
-                <button
-                  type="submit"
-                  class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
-                >
-                 <LogOut class="w-4 h-4 inline-block text-red-600" />
-                 <span class="ml-2">Logout</span>
-                </button>
-              </form>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </nav>
 
-    <!-- Page Content -->
-    <main class="py-6">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <slot />
-      </div>
-    </main>
+    <div class="flex-1 flex flex-col min-w-0">
+      <FlashMessage />
+
+      <!-- Page Heading -->
+      <header class="bg-white shadow-sm border-b border-gray-100" v-if="$slots.header">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <slot name="header" />
+        </div>
+      </header>
+
+      <main class="flex-1 py-8 overflow-y-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <slot />
+        </div>
+      </main>
+    </div>
+
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue'
-import { Link, useForm, usePage } from '@inertiajs/vue3'
-import { User, LogOut, ChevronDown, User2 } from 'lucide-vue-next'
+import { Link, usePage, router } from '@inertiajs/vue3'
+import { User, LogOut, ChevronRight } from 'lucide-vue-next'
 import FlashMessage from '@/Components/FlashMessage.vue'
 
 const $page = usePage()
@@ -144,6 +148,7 @@ const isActive = (path) => {
 }
 
 const logout = () => {
-  useForm({}).post('/logout')
+  // Use the explicit URL path instead of the route() helper
+  router.post('/logout')
 }
 </script>
