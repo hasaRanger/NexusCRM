@@ -14,6 +14,7 @@ defineProps({
 });
 
 const confirmingDeleteId = ref(null);
+const sendingInvoiceId = ref(null);
 
 function openDeleteModal(id) {
     confirmingDeleteId.value = id;
@@ -32,6 +33,13 @@ function confirmDelete() {
 function changeStatus(invoiceId, event) {
     router.patch(route('invoices.changeStatus', invoiceId), {
         status: event.target.value,
+    });
+}
+
+function sendInvoice(invoiceId) {
+    sendingInvoiceId.value = invoiceId;
+    router.post(route('invoices.send', invoiceId), {}, {
+        onFinish: () => { sendingInvoiceId.value = null; },
     });
 }
 
@@ -150,15 +158,24 @@ function formatDate(dateString) {
                                             <option value="paid">Paid</option>
                                         </select>
 
-                                        <!-- Send Invoice (Placeholder) -->
+                                        <!-- Send Invoice -->
                                         <button
+                                            v-if="invoice.status === 'draft'"
                                             type="button"
-                                            disabled
-                                            class="text-blue-400 cursor-not-allowed opacity-50"
-                                            title="Coming soon"
+                                            :disabled="sendingInvoiceId === invoice.id"
+                                            class="text-blue-600 hover:text-blue-900 font-medium disabled:opacity-50 disabled:cursor-wait"
+                                            title="Send invoice to customer"
+                                            @click="sendInvoice(invoice.id)"
+                                        >
+                                            <Send class="w-4 h-4" :class="{ 'animate-pulse': sendingInvoiceId === invoice.id }" />
+                                        </button>
+                                        <span
+                                            v-else
+                                            class="text-gray-300 cursor-not-allowed"
+                                            :title="invoice.status === 'sent' ? 'Already sent' : 'Invoice is paid'"
                                         >
                                             <Send class="w-4 h-4" />
-                                        </button>
+                                        </span>
 
                                         <!-- Delete -->
                                         <button

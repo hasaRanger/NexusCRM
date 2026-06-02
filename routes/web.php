@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -48,6 +50,18 @@ Route::middleware('auth')->group(function () {
     Route::resource('invoices', InvoiceController::class)->except(['show']);
     Route::patch('/invoices/{invoice}/status', [InvoiceController::class, 'changeStatus'])
         ->name('invoices.changeStatus');
+    Route::post('/invoices/{invoice}/send', [InvoiceController::class, 'send'])
+        ->name('invoices.send');
+    Route::get('/invoices/payment-success', [InvoiceController::class, 'paymentSuccess'])
+        ->name('invoices.paymentSuccess');
+
+    Route::get('/transactions', [TransactionController::class, 'index'])
+        ->name('transactions.index');
 });
 
+// Stripe webhook — outside auth middleware, excluded from CSRF
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handle'])
+    ->name('stripe.webhook');
+
 require __DIR__.'/auth.php';
+
