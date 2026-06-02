@@ -98,6 +98,7 @@ function toggleStatus(customer) {
                                         <Link
                                             :href="route('customers.edit', customer.id)"
                                             class="text-indigo-600 hover:text-indigo-900 font-medium"
+                                            :title="'Edit'"
                                         >
                                             <Wrench class="w-4 h-4" />
                                         </Link>
@@ -105,6 +106,7 @@ function toggleStatus(customer) {
                                             type="button"
                                             class="font-medium"
                                             @click="toggleStatus(customer)"
+                                            :title="customer.status === 'active' ? 'Deactivate' : 'Activate'"
                                         >
                                             <ShieldBan v-if="customer.status === 'active'" class="text-yellow-600 hover:text-yellow-900 w-4 h-4" />
                                             <ShieldCheck v-else class="text-green-600 hover:text-green-900 w-4 h-4" />
@@ -113,6 +115,7 @@ function toggleStatus(customer) {
                                             type="button"
                                             class="text-red-600 hover:text-red-900 font-medium"
                                             @click="openDeleteModal(customer.id)"
+                                            :title="'Delete'"
                                         >
                                             <Trash class="w-4 h-4" />
                                         </button>

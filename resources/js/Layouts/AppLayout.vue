@@ -5,7 +5,7 @@
       
       <div>
         <div class="h-16 flex items-center px-6 border-b border-gray-100">
-          <div class="text-3xl font-extrabold text-gray-900">CRM</div>
+          <div class="text-3xl font-extrabold text-gray-900">NexusCRM</div>
         </div>
         
         <div class="flex flex-col space-y-1 mt-6 px-3">

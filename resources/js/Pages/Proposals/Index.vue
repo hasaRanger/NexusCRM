@@ -122,6 +122,7 @@ function formatDate(dateString) {
                                         <Link
                                             :href="route('proposals.edit', proposal.id)"
                                             class="text-indigo-600 hover:text-indigo-900 font-medium"
+                                            :title="'Edit'"
                                         >
                                             <Wrench class="w-4 h-4" />
                                         </Link>
@@ -143,6 +144,7 @@ function formatDate(dateString) {
                                             type="button"
                                             class="text-red-600 hover:text-red-900 font-medium"
                                             @click="openDeleteModal(proposal.id)"
+                                            :title="'Delete'"
                                         >
                                             <Trash class="w-4 h-4" />
                                         </button>
