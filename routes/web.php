@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProposalController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -38,6 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('customers', CustomerController::class)->except(['show']);
     Route::patch('/customers/{customer}/status', [CustomerController::class, 'toggleStatus'])
         ->name('customers.toggleStatus');
+
+    Route::resource('proposals', ProposalController::class)->except(['show']);
+    Route::patch('/proposals/{proposal}/status', [ProposalController::class, 'changeStatus'])
+        ->name('proposals.changeStatus');
 });
 
 require __DIR__.'/auth.php';
