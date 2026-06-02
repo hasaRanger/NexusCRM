@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -43,6 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('proposals', ProposalController::class)->except(['show']);
     Route::patch('/proposals/{proposal}/status', [ProposalController::class, 'changeStatus'])
         ->name('proposals.changeStatus');
+
+    Route::resource('invoices', InvoiceController::class)->except(['show']);
+    Route::patch('/invoices/{invoice}/status', [InvoiceController::class, 'changeStatus'])
+        ->name('invoices.changeStatus');
 });
 
 require __DIR__.'/auth.php';

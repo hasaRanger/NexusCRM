@@ -31,5 +31,10 @@ class DatabaseSeeder extends Seeder
         if (\App\Models\Proposal::count() === 0) {
             \App\Models\Proposal::factory(15)->create();
         }
+
+        // Seed some invoices
+        if (\App\Models\Invoice::count() === 0) {
+            \App\Models\Invoice::factory(10)->create();
+        }
     }
 }
