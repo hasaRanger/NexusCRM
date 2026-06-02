@@ -47,3 +47,10 @@ Thumbs.db
 # Coverage and build artifacts
 /coverage
 /.sass-cache
+
+# Cache and vendor archives
+.phpunit.result.cache
+composer.phar
+
+# SQLite databases
+*.sqlite
