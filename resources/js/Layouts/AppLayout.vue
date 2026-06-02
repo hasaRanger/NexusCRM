@@ -1,11 +1,12 @@
 <template>
-  <div class="min-h-screen bg-gray-100 flex">
+  <div class="min-h-screen bg-gray-300 flex">
     
-    <nav class="w-64 bg-white shadow-lg flex flex-col justify-between sticky top-0 h-screen z-20">
+    <nav class="w-64 bg-gray-200 flex flex-col justify-between sticky top-0 h-screen z-20">
       
       <div>
-        <div class="h-16 flex items-center px-6 border-b border-gray-100">
-          <div class="text-3xl font-extrabold text-gray-900">NexusCRM</div>
+        <div class="h-16 flex items-center justify-start px-6 border-b bg-gray-200">
+          <img src="logo.jpg" alt="Logo" class="w-12 h-12 rounded-full border-2 border-gray-100">
+          <!-- <div class="text-3xl font-extrabold text-gray-900">NexusCRM</div> -->
         </div>
         
         <div class="flex flex-col space-y-1 mt-6 px-3">
@@ -13,9 +14,9 @@
             href="/dashboard"
             :class="[
               isActive('/dashboard')
-                ? 'bg-indigo-50 text-indigo-700'
+                ? 'bg-gray-300 text-indigo-700'
                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
             Dashboard
@@ -24,9 +25,9 @@
             href="/customers"
             :class="[
               isActive('/customers')
-                ? 'bg-indigo-50 text-indigo-700'
+                ? 'bg-gray-300 text-indigo-700'
                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
             Customers
@@ -35,9 +36,9 @@
             href="/proposals"
             :class="[
               isActive('/proposals')
-                ? 'bg-indigo-50 text-indigo-700'
+                ? 'bg-gray-300 text-indigo-700'
                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
             Proposals
@@ -46,9 +47,9 @@
             href="/invoices"
             :class="[
               isActive('/invoices')
-                ? 'bg-indigo-50 text-indigo-700'
+                ? 'bg-gray-300 text-indigo-700'
                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
             Invoices
@@ -57,9 +58,9 @@
             href="/transactions"
             :class="[
               isActive('/transactions')
-                ? 'bg-indigo-50 text-indigo-700'
+                ? 'bg-gray-300 text-indigo-700'
                 : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-              'px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center'
+              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
             Transactions
@@ -113,7 +114,7 @@
       <FlashMessage />
 
       <!-- Page Heading -->
-      <header class="bg-white shadow-sm border-b border-gray-100" v-if="$slots.header">
+      <header class="bg-gray-200 shadow-sm border-b border-gray-100 text-left" v-if="$slots.header">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <slot name="header" />
         </div>

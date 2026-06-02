@@ -70,7 +70,7 @@ function formatDate(dateString) {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr v-for="transaction in transactions.data" :key="transaction.id" class="hover:bg-gray-50">
+                                <tr v-for="transaction in transactions.data" :key="transaction.id" class="hover:bg-gray-300">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ transaction.invoice?.invoice_number ?? '—' }}
                                     </td>

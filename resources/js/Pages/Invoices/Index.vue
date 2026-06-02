@@ -70,13 +70,7 @@ function formatDate(dateString) {
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Invoices</h2>
-                <Link
-                    :href="route('invoices.create')"
-                    class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition"
-                >
-                    <Plus class="w-4 h-4" />
-                    New Invoice
-                </Link>
+                
             </div>
         </template>
 
@@ -88,6 +82,15 @@ function formatDate(dateString) {
                     class="mb-4 p-4 bg-green-100 text-green-800 rounded-md text-sm"
                 >
                     {{ $page.props.flash.success }}
+                </div>
+                
+                <!-- Add New Invoice -->
+                <div class="flex justify-end">
+                    <Link :href="route('invoices.create')"
+                        class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition mb-4">
+                        <Plus class="w-4 h-4" />
+                        New Invoice
+                    </Link>
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -110,20 +113,20 @@ function formatDate(dateString) {
                                         No invoices found.
                                     </td>
                                 </tr>
-                                <tr v-for="invoice in invoices.data" :key="invoice.id" class="hover:bg-gray-50">
+                                <tr v-for="invoice in invoices.data" :key="invoice.id" class="hover:bg-gray-300">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ invoice.invoice_number }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-650">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         {{ invoice.customer?.name ?? '—' }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-650">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         {{ formatCurrency(invoice.amount) }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-655">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         {{ formatCurrency(invoice.tax) }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-650">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         {{ formatDate(invoice.due_date) }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">

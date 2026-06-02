@@ -31,7 +31,26 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'stats' => [
+            'customers_count' => \App\Models\Customer::count(),
+            'proposals_count' => \App\Models\Proposal::count(),
+            'invoices_count' => \App\Models\Invoice::count(),
+            'invoice_status_counts' => \App\Models\Invoice::selectRaw('status, count(*) as count')->groupBy('status')->pluck('count', 'status'),
+            'transactions_count' => \App\Models\Transaction::count(),
+            'transactions_sum_amount' => \App\Models\Transaction::sum('amount') ?? 0,
+            'transactions' => \App\Models\Transaction::with('invoice.customer')
+                ->latest()
+                ->take(3)
+                ->get()
+                ->map(fn($t) => [
+                    'id' => $t->id,
+                    'amount' => '$' . number_format($t->amount, 2),
+                    'date' => $t->created_at->format('M d, Y'),
+                    'customer' => ['name' => $t->invoice->customer->name ?? 'Unknown'],
+                ]),
+        ]
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

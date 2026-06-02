@@ -13,7 +13,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="NexusCRM - CRM for Modern Teams" />
+    <Head title="NexusCRM | CRM for Modern Teams" icon="/favicon.jpg"/>
 
     <div class="min-h-screen bg-gray-50 text-gray-800 font-sans selection:bg-indigo-500 selection:text-white">
         <!-- Navigation Bar -->
@@ -21,9 +21,10 @@ defineProps({
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-md">
+                    <!-- <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-md">
                         <Zap class="w-5 h-5 text-white" />
-                    </div>
+                    </div> -->
+                    <img src="logo.jpg" alt="Logo" class="w-10 h-10 rounded-full object-cover backdrop-blur-sm" />
                     <span class="text-xl font-bold tracking-tight text-gray-900">
                         NexusCRM
                     </span>
@@ -42,7 +43,7 @@ defineProps({
                     <template v-else>
                         <Link
                             :href="route('login')"
-                            class="text-sm font-medium text-gray-650 hover:text-gray-900 transition-colors"
+                            class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
                         >
                             Sign In
                         </Link>
@@ -61,10 +62,10 @@ defineProps({
         <!-- Hero Section -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 text-center">
             <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-700 mb-8">
+            <!-- <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-700 mb-8">
                 <Sparkles class="w-3.5 h-3.5" />
                 Next Generation Sales CRM
-            </div>
+            </div> -->
 
             <!-- Title -->
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight max-w-4xl mx-auto">
@@ -169,12 +170,12 @@ defineProps({
         <footer class="border-t border-gray-200 py-8 bg-white text-gray-500 text-xs">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                    &copy; 2026 LeadFlow CRM. All rights reserved.
+                    &copy; 2026 NexusCRM. All rights reserved.
                 </div>
                 <div class="flex items-center gap-6">
-                    <span class="hover:text-gray-750 cursor-pointer transition-colors">Privacy Policy</span>
-                    <span class="hover:text-gray-750 cursor-pointer transition-colors">Terms of Service</span>
-                    <span class="hover:text-gray-750 cursor-pointer transition-colors">Contact Support</span>
+                    <span class="hover:text-gray-900 cursor-pointer transition-colors">Privacy Policy</span>
+                    <span class="hover:text-gray-900 cursor-pointer transition-colors">Terms of Service</span>
+                    <span class="hover:text-gray-900 cursor-pointer transition-colors">Contact Support</span>
                 </div>
             </div>
         </footer>

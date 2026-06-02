@@ -39,24 +39,23 @@ function toggleStatus(customer) {
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Customers</h2>
-                <Link
-                    :href="route('customers.create')"
-                    class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition"
-                >
-                    <Plus class="w-5 h-5" />
-                    New Customer
-                </Link>
             </div>
         </template>
 
         <div class="py-8">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <!-- Flash message -->
-                <div
-                    v-if="$page.props.flash?.success"
-                    class="mb-4 p-4 bg-green-100 text-green-800 rounded-md text-sm"
-                >
+                <div v-if="$page.props.flash?.success" class="mb-4 p-4 bg-green-100 text-green-800 rounded-md text-sm">
                     {{ $page.props.flash.success }}
+                </div>
+
+                <!-- Add New Customer -->
+                <div class="flex justify-end mb-4">
+                    <Link :href="route('customers.create')"
+                        class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
+                        <Plus class="w-5 h-5" />
+                        New Customer
+                    </Link>
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -78,7 +77,7 @@ function toggleStatus(customer) {
                                         No customers found.
                                     </td>
                                 </tr>
-                                <tr v-for="customer in customers.data" :key="customer.id" class="hover:bg-gray-50">
+                                <tr v-for="customer in customers.data" :key="customer.id" class="hover:bg-gray-300">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ customer.name }}
                                     </td>

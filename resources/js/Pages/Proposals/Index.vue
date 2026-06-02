@@ -62,13 +62,6 @@ function formatDate(dateString) {
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Proposals</h2>
-                <Link
-                    :href="route('proposals.create')"
-                    class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition"
-                >
-                    <Plus class="w-4 h-4" />
-                    New Proposal
-                </Link>
             </div>
         </template>
 
@@ -80,6 +73,15 @@ function formatDate(dateString) {
                     class="mb-4 p-4 bg-green-100 text-green-800 rounded-md text-sm"
                 >
                     {{ $page.props.flash.success }}
+                </div>
+
+                <!-- Add New Proposal -->
+                 <div class="flex justify-end mb-4">
+                    <Link :href="route('proposals.create')"
+                        class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
+                        <Plus class="w-4 h-4" />
+                        New Proposal
+                    </Link>
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -101,7 +103,7 @@ function formatDate(dateString) {
                                         No proposals found.
                                     </td>
                                 </tr>
-                                <tr v-for="proposal in proposals.data" :key="proposal.id" class="hover:bg-gray-50">
+                                <tr v-for="proposal in proposals.data" :key="proposal.id" class="hover:bg-gray-300">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ proposal.title }}
                                     </td>

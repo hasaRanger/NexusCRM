@@ -54,7 +54,9 @@ class InvoiceController extends Controller
 
         $validated['invoice_number'] = $invoiceNumber;
 
-        Invoice::create($validated);
+        $invoice = Invoice::create($validated);
+
+        $this->syncTransaction($invoice);
 
         return redirect()->route('invoices.index')
             ->with('success', 'Invoice created successfully.');
@@ -86,6 +88,8 @@ class InvoiceController extends Controller
 
         $invoice->update($validated);
 
+        $this->syncTransaction($invoice);
+
         return redirect()->route('invoices.index')
             ->with('success', 'Invoice updated successfully.');
     }
@@ -106,7 +110,28 @@ class InvoiceController extends Controller
 
         $invoice->update($validated);
 
+        $this->syncTransaction($invoice);
+
         return back()->with('success', 'Status updated.');
+    }
+
+    private function syncTransaction(Invoice $invoice)
+    {
+        if ($invoice->status === 'paid') {
+            if (!$invoice->transaction) {
+                Transaction::create([
+                    'invoice_id' => $invoice->id,
+                    'amount'     => $invoice->amount + ($invoice->tax ?? 0),
+                    'gateway'    => 'manual',
+                    'reference'  => 'Manual Payment',
+                    'paid_at'    => now(),
+                ]);
+            }
+        } else {
+            if ($invoice->transaction) {
+                $invoice->transaction->delete();
+            }
+        }
     }
 
     public function send(Invoice $invoice): RedirectResponse
