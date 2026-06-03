@@ -41,7 +41,7 @@ Route::get('/dashboard', function () {
             'transactions_sum_amount' => \App\Models\Transaction::sum('amount') ?? 0,
             'transactions' => \App\Models\Transaction::with('invoice.customer')
                 ->latest()
-                ->take(3)
+                ->take(5)
                 ->get()
                 ->map(fn($t) => [
                     'id' => $t->id,

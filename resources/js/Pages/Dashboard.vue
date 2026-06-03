@@ -115,15 +115,15 @@ function formatCurrency(amount) {
             </div>
         </div>
 
-        <div class="grid grid-cols-3 lg:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
            
             <div class="bg-gray-200 p-10 rounded-lg col-span-2">
-                <h2 class="text-xl font-extrabold text-gray-900 mb-4">Invoice Distribution</h2>
-                <PieChart height="200" :series="invoiceStatusSeries" :labels="invoiceStatusLabels" />
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-4">Invoice Distribution</h2>
+                <PieChart height="300" :series="invoiceStatusSeries" :labels="invoiceStatusLabels" />
             </div>
 
             <div class="bg-gray-200 p-10 rounded-lg">
-                <h2 class="text-xl font-extrabold text-gray-900 mb-4">Recent Transactions Feed</h2>
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-4">Recent Transactions Feed</h2>
                 <table class="w-full">
                     <tbody class="divide-y divide-gray-100">
                         <tr v-for="transaction in stats.transactions" :key="transaction.id" class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-300 cursor-pointer">

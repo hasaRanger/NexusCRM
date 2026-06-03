@@ -12,6 +12,10 @@ export default {
     target: {
       type: Number,
       default: 150000
+    },
+    height: {
+      type: [Number, String],
+      default: 300
     }
   },
   computed: {
@@ -25,7 +29,7 @@ export default {
     return {
       chartOptions: {
         chart: {
-          height: 200,
+          height: this.height,
           type: 'gauge',
         },
         plotOptions: {
@@ -68,5 +72,5 @@ export default {
 </script>
 
 <template>
-    <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
+    <apexchart type="radialBar" :height="height" :options="chartOptions" :series="series"></apexchart>
 </template>

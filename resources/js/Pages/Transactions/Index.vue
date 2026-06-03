@@ -81,11 +81,16 @@ function formatDate(dateString) {
                                         {{ formatCurrency(transaction.amount) }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 capitalize">
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize"
+                                            :class="transaction.gateway === 'stripe'
+                                                ? 'bg-indigo-100 text-indigo-800'
+                                                : 'bg-amber-100 text-amber-800'"
+                                        >
                                             {{ transaction.gateway }}
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono text-xs">
+                                    <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-500 font-mono">
                                         {{ transaction.reference ? transaction.reference.substring(0, 24) + '…' : '—' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
