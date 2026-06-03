@@ -118,7 +118,7 @@ function formatCurrency(amount) {
         <div class="grid grid-cols-3 lg:grid-cols-3 gap-6 mb-8">
            
             <div class="bg-gray-200 p-10 rounded-lg col-span-2">
-                <h2 class="text-xl font-extrabold text-gray-900 mb-4">Outstanding vs Paid Invoices</h2>
+                <h2 class="text-xl font-extrabold text-gray-900 mb-4">Invoice Distribution</h2>
                 <PieChart height="200" :series="invoiceStatusSeries" :labels="invoiceStatusLabels" />
             </div>
 
