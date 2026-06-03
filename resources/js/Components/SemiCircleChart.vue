@@ -7,15 +7,27 @@ export default {
   props: {
     amount: {
       type: [Number, String],
-      default: 0
+      default: 0,
     },
     target: {
       type: Number,
-      default: 150000
+      default: 1000
     },
-    height: {
-      type: [Number, String],
-      default: 300
+    fontSize: {
+      type: String,
+      default: '24px'
+    },
+    fontWeight: {
+      type: [String, Number],
+      default: 'bold'
+    },
+    color: {
+      type: String,
+      default: '#111827'
+    },
+    barColor: {
+      type: String,
+      default: '#4f46e5' // Tailwind indigo-600
     }
   },
   computed: {
@@ -23,21 +35,20 @@ export default {
       const val = parseFloat(this.amount) || 0;
       const percentage = (val / this.target) * 100;
       return [parseFloat(percentage.toFixed(1))];
-    }
-  },
-  data() {
-    return {
-      chartOptions: {
+    },
+    chartOptions() {
+      return {
         chart: {
-          height: this.height,
+          height: 200,
           type: 'gauge',
         },
+        colors: [this.barColor],
         plotOptions: {
           radialBar: {
             startAngle: -90,
             endAngle: 90,
             track: {
-              background: '#2B2B36',
+              background: '#d1d5db',
               strokeWidth: '100%',
               margin: 0,
             },
@@ -45,7 +56,9 @@ export default {
               name: { show: false },
               value: {
                 offsetY: -2,
-                fontSize: '26px',
+                fontSize: this.fontSize,
+                fontWeight: this.fontWeight,
+                color: this.color,
                 formatter: function (val) {
                   return val + '%'
                 },
@@ -65,12 +78,12 @@ export default {
           },
         },
         labels: ['Score'],
-      },
+      };
     }
   },
 }
 </script>
 
 <template>
-    <apexchart type="radialBar" :height="height" :options="chartOptions" :series="series"></apexchart>
+  <apexchart type="radialBar" :options="chartOptions" :series="series"></apexchart>
 </template>

@@ -21,9 +21,6 @@ defineProps({
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center gap-2">
-                    <!-- <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-md">
-                        <Zap class="w-5 h-5 text-white" />
-                    </div> -->
                     <img src="logo.jpg" alt="Logo" class="w-10 h-10 rounded-full object-cover backdrop-blur-sm" />
                     <span class="text-xl font-bold tracking-tight text-gray-900">
                         NexusCRM

@@ -6,17 +6,19 @@
       
       <div>
         <div class="h-16 flex items-center justify-start px-6 border-b bg-gray-200">
-          <img src="logo.jpg" alt="Logo" class="w-12 h-12 rounded-full border-2 border-gray-100">
+          <Link href="/dashboard">
+          <img src="logo.jpg" alt="Logo" class="w-12 h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
+          </Link>
           <!-- <div class="text-3xl font-extrabold text-gray-900">NexusCRM</div> -->
         </div>
         
-        <div class="flex flex-col space-y-1 mt-6 px-3">
+        <div class="flex flex-col space-y-1 mt-6 px-3 transition-all ease-in-out">
           <Link
             href="/dashboard"
             :class="[
               isActive('/dashboard')
                 ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -27,7 +29,7 @@
             :class="[
               isActive('/customers')
                 ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -38,7 +40,7 @@
             :class="[
               isActive('/proposals')
                 ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -49,7 +51,7 @@
             :class="[
               isActive('/invoices')
                 ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -60,7 +62,7 @@
             :class="[
               isActive('/transactions')
                 ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -72,7 +74,7 @@
       <div class="p-4 border-t border-gray-200 relative">
         <button
           @click="isProfileOpen = !isProfileOpen"
-          class="flex items-center w-full space-x-3 text-gray-700 hover:text-gray-900 focus:outline-none rounded-md p-2 hover:bg-gray-50 transition-colors"
+          class="flex items-center w-full space-x-3 text-gray-700 hover:text-gray-900 focus:outline-none rounded-md p-2 hover:bg-gray-300 transition-colors"
         >
           <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
             {{ userInitial }}
@@ -92,7 +94,7 @@
           class="absolute bottom-4 left-full ml-2 w-56 bg-white rounded-lg shadow-xl z-50 border border-gray-200"
         >
           <div class="flex flex-row px-4 py-3 border-b border-gray-200">
-            <User class="w-5 h-5 text-gray-400 mt-1" />
+            <User class="w-5 h-5 text-gray-600 mt-1" />
             <div class="ml-3 overflow-hidden">
                 <p class="text-sm font-medium text-gray-900 truncate">{{ $page.props.auth.user.name }}</p>
                 <p class="text-xs text-gray-500 truncate">{{ $page.props.auth.user.email }}</p>
@@ -101,7 +103,7 @@
           <form @submit.prevent="logout" class="p-2">
             <button
               type="submit"
-              class="w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 rounded-md transition-colors relative z-10"
+              class="w-full flex items-center px-4 py-2 font-medium text-sm text-gray-900 hover:bg-gray-300 rounded-md transition-colors relative z-10"
             >
              <LogOut class="w-4 h-4 text-red-600" />
              <span class="ml-3">Logout</span>
