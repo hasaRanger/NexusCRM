@@ -22,7 +22,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Register" />
+        <Head title="Register | NexusCRM" />
 
         <form @submit.prevent="submit">
             <div>

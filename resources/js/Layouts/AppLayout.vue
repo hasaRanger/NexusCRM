@@ -1,4 +1,5 @@
 <template>
+  <Head :title="title" />
   <div class="min-h-screen bg-gray-300 flex">
     
     <nav class="w-64 bg-gray-200 flex flex-col justify-between sticky top-0 h-screen z-20">
@@ -132,9 +133,16 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { Link, usePage, router } from '@inertiajs/vue3'
+import { Head, Link, usePage, router } from '@inertiajs/vue3'
 import { User, LogOut, ChevronRight } from 'lucide-vue-next'
 import FlashMessage from '@/Components/FlashMessage.vue'
+
+defineProps({
+    title: {
+        type: String,
+        default: 'NexusCRM',
+    },
+})
 
 const $page = usePage()
 const isProfileOpen = ref(false)

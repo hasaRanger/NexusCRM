@@ -31,7 +31,7 @@ function formatDate(dateString) {
 </script>
 
 <template>
-    <AppLayout title="Transactions">
+    <AppLayout title="Transactions | NexusCRM">
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Transactions</h2>

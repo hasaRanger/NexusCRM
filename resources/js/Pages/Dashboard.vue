@@ -33,7 +33,7 @@ function formatCurrency(amount) {
 </script>
 
 <template>
-  <AppLayout title="Dashboard">
+  <AppLayout title="Dashboard | NexusCRM">
     <template #header>
         <!-- Welcome Section -->
         <div class="flex items-center justify-between">

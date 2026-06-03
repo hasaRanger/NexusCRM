@@ -28,7 +28,7 @@ function submit() {
 </script>
 
 <template>
-    <AppLayout title="Edit Proposal">
+    <AppLayout title="Edit Proposal | NexusCRM">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Proposal</h2>
         </template>

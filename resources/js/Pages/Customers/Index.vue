@@ -35,7 +35,7 @@ function toggleStatus(customer) {
 </script>
 
 <template>
-    <AppLayout title="Customers">
+    <AppLayout title="Customers | NexusCRM">
         <template #header>
             <div class="flex items-center justify-between">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Customers</h2>
