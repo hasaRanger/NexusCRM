@@ -1,17 +1,6 @@
 # NexusCRM
 
-<table>
-  <tr>
-    <td width="100" valign="top">
-      <img src="../crm-app/public/logo.jpg" alt="Logo" width="120" style="border-radius: 50%">
-    </td>
-    <td valign="middle">
-      NexusCRM is a clean, modern, and highly responsive Customer Relationship Management (CRM) platform designed for modern sales and operations teams. It streamlines your sales pipeline, automates invoicing and billing, tracks customer engagements, and provides visual, real-time insights into your business metrics.
-    </td>
-  </tr>
-</table>
-
-
+NexusCRM is a clean, modern, and highly responsive Customer Relationship Management (CRM) platform designed for modern sales and operations teams. It streamlines your sales pipeline, automates invoicing and billing, tracks customer engagements, and provides visual, real-time insights into your business metrics.
 
 ---
 
