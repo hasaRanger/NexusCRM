@@ -1,16 +1,27 @@
 # NexusCRM
 
-NexusCRM is a clean, modern, and highly responsive Customer Relationship Management (CRM) platform designed for modern sales and operations teams. It streamlines your sales pipeline, automates invoicing and billing, tracks customer engagements, and provides visual, real-time insights into your business metrics.
+<table>
+  <tr>
+    <td width="100" valign="top">
+      <img src="../crm-app/public/logo.jpg" alt="Logo" width="120" style="border-radius: 50%">
+    </td>
+    <td valign="middle">
+      NexusCRM is a clean, modern, and highly responsive Customer Relationship Management (CRM) platform designed for modern sales and operations teams. It streamlines your sales pipeline, automates invoicing and billing, tracks customer engagements, and provides visual, real-time insights into your business metrics.
+    </td>
+  </tr>
+</table>
+
+
 
 ---
 
 ## 🚀 Core Features
 
 - **Dynamic Dashboard**:
-  - Live statistics overview (Total Customers, Proposals, Invoices, and Transactions).
+  - **Live statistics overview** (Total Customers, Proposals, Invoices, and Transactions).
   - **Revenue progress gauge** (using ApexCharts) showing live earnings against targeted revenue.
   - **Invoice status distributions** represented as an interactive Pie Chart (Paid, Sent, Draft).
-  - **Recent Transactions Feed** showcasing the latest activities.
+  - **Recent Transactions Feed** showcasing the latest transactions.
 - **Customer Hub**: Centrally manage customer profiles, toggle active status, and track historical proposals/invoices.
 - **Proposal Management**: Draft custom proposals with validity terms and update status directly from your pipeline.
 - **Invoicing & Billing**: Auto-generate unique invoices, manage payment status, and send beautiful HTML invoices via email.
@@ -44,7 +55,7 @@ NexusCRM is a clean, modern, and highly responsive Customer Relationship Managem
 
 ```
 ├── app/
-│   ├── Http/Controllers/       # Customer, Proposal, Invoice, Stripe, and Dashboard Controllers
+│   ├── Http/Controllers/       # Customer, Proposal, Invoice, Stripe, Transaction, Profile Controllers
 │   ├── Mail/                   # Mail configurations (InvoiceMail, WelcomeMail)
 │   └── Models/                 # Eloquent Database Models (User, Customer, Proposal, Invoice, Transaction)
 ├── bootstrap/                  # Framework bootstrap configuration
@@ -59,7 +70,7 @@ NexusCRM is a clean, modern, and highly responsive Customer Relationship Managem
 │   ├── js/
 │   │   ├── Components/         # Reusable Vue components (Charts, StatusBadges, Confirmation Modals)
 │   │   ├── Layouts/            # App view shells (AppLayout with sidebar navigation, GuestLayout)
-│   │   ├── Pages/              # Page views (Dashboard, Customers, Proposals, Invoices, Profile)
+│   │   ├── Pages/              # Page views (Dashboard, Customers, Proposals, Invoices, Transactions, Profile, Auth)
 │   │   └── app.js              # Application entry point
 │   └── views/                  # Base Blade layout template
 ├── routes/                     # Application routing (web.php, auth.php, api.php)
@@ -103,7 +114,7 @@ cp .env.example .env
 Open `.env` and fill in your local system details:
 - **Database Connection**: Set up SQLite (e.g., `DB_CONNECTION=sqlite`, `DB_DATABASE=database.sqlite`) or configure your MySQL/PostgreSQL server details.
 - **Mail Configuration**: Set up Mailtrap or SMTP credentials to test invoice delivery.
-- **Stripe Credentials**: Insert your Stripe API public key, secret key, and webhook signing secret.
+- **Stripe Credentials**: Insert your Stripe API public key and secret key.
 
 ### Step 5: Initialize Application Keys
 ```bash
@@ -145,6 +156,27 @@ php artisan test
 
 ---
 
-## 📝 License
+## ⚠️ Known Limitations
+
+### Stripe Payments
+- Whenever a customer makes a payment through the Stripe payment gateway, the transaction log is updated in the database.
+- The system captures successful payments through the redirection back to the success URL after the customer completes the payment on Stripe's hosted payment page.
+- In the sandboxed (test) environment, payments can be made by anyone, but only using Stripe's test card numbers. Payments made by other accounts are recorded in the Stripe dashboard but are not captured by the system due to the absence of webhooks.
+- In a live environment, the system needs to be hosted on a public URL so that customers can access the payment page and be redirected back after payment. Additionally, webhooks are implemented to establish a direct server-to-server communication between Stripe and the Laravel backend, ensuring payments are captured in the system regardless of whether the customer's browser successfully completes the redirect.
+
+### Real-Time UI Updates
+- When a customer pays an invoice, the Stripe webhook updates the database
+in the background independently of the UI.
+- The invoice status change from "Sent" to "Paid" is not reflected on the
+Dashboard or Invoices list until the page is manually refreshed.
+- In the sandboxed (test) environment, this is manageable since payments
+are made and monitored by the developer directly (By the time we get redirected to the success page, the page has already reloaded).
+- In a live environment, implementing WebSockets via Laravel Reverb or Pusher
+to broadcast an `InvoicePaid` event would instantly update the UI for any
+logged-in user without requiring a manual page refresh.
+
+---
+
+## 🛡️ License
 
 NexusCRM is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
