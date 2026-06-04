@@ -7,7 +7,7 @@
       <div>
         <div class="h-16 flex items-center justify-start px-6 border-b bg-gray-200">
           <Link href="/dashboard">
-          <img src="logo.jpg" alt="Logo" class="w-12 h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
+          <img src="/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
           </Link>
           <!-- <div class="text-3xl font-extrabold text-gray-900">NexusCRM</div> -->
         </div>
