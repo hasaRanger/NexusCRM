@@ -6,15 +6,43 @@ import StatusBadge from '@/Components/StatusBadge.vue';
 import ConfirmModal from '@/Components/ConfirmModal.vue';
 import { Plus, Trash, Wrench, Send } from 'lucide-vue-next';
 
-defineProps({
+const props = defineProps({
     invoices: {
         type: Object,
         required: true,
     },
+    filters: {
+        type: Object,
+        required: true,
+    },
+    sort: {
+        type: Object,
+        default: () => ({
+            sort_by: 'created_at',
+            sort_direction: 'desc',
+        })
+    },
 });
+
+const search = ref(props.filters.search ?? '');
+const statusFilter = ref(props.filters.status ?? 'all');
+const sortBy = ref(`${props.sort.sort_by ?? 'created_at'}|${props.sort.sort_direction ?? 'desc'}`);
 
 const confirmingDeleteId = ref(null);
 const sendingInvoiceId = ref(null);
+
+function applyFilters() {
+    const [sortField, sortDir] = sortBy.value.split('|');
+    router.get(route('invoices.index'), {
+        search: search.value || undefined,
+        status: statusFilter.value !== 'all' ? statusFilter.value : undefined,
+        sort_by: sortField,
+        sort_direction: sortDir,
+    }, {
+        preserveState: true,
+        replace: true,
+    });
+}
 
 function openDeleteModal(id) {
     confirmingDeleteId.value = id;
@@ -83,15 +111,45 @@ function formatDate(dateString) {
                 >
                     {{ $page.props.flash.success }}
                 </div>
-                
-                <!-- Add New Invoice -->
-                <div class="flex justify-end">
-                    <Link :href="route('invoices.create')"
-                        class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition mb-4">
-                        <Plus class="w-4 h-4" />
-                        New Invoice
-                    </Link>
+                    
+                <div class="flex items-center justify-between">
+                    <!-- Search and Filter -->
+                    <div class="mb-4 flex items-center space-x-4">
+                        <input v-model="search" @keyup.enter="applyFilters" placeholder="Search invoices..."
+                            class="px-3 py-2 border border-gray-300 rounded-md w-64 text-sm">
+
+                        <select v-model="statusFilter" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-28">
+                            <option value="all" selected>All Status</option>
+                            <option value="draft">Draft</option>
+                            <option value="sent">Sent</option>
+                            <option value="paid">Paid</option>
+                        </select>
+
+                        <select v-model="sortBy" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-40">
+                            <option value="created_at|desc">Newest First</option>
+                            <option value="created_at|asc">Oldest First</option>
+                            <option value="amount|asc">Amount Low-High</option>
+                            <option value="amount|desc">Amount High-Low</option>
+                        </select>
+
+                        <button @click="applyFilters"
+                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            Search
+                        </button>
+                    </div>
+
+                    <!-- Add New Invoice -->
+                    <div class="flex justify-end">
+                        <Link :href="route('invoices.create')"
+                            class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition mb-4">
+                            <Plus class="w-4 h-4" />
+                            New Invoice
+                        </Link>
+                    </div>
                 </div>
+                
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-auto">

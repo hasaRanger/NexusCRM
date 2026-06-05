@@ -1,14 +1,41 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { Link, router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { ArrowLeftRight } from 'lucide-vue-next';
 
-defineProps({
+const props = defineProps({
     transactions: {
         type: Object,
         required: true,
     },
+    filters: {
+        type: Object,
+        required: true,
+    },
+    sort: {
+        type: Object,
+        required: true,
+    },
 });
+
+const search = ref(props.filters.search ?? '');
+const gatewayFilter = ref(props.filters.gateway ?? 'all');
+const sortBy = ref(`${props.sort.sort_by ?? 'created_at'}|${props.sort.sort_direction ?? 'desc'}`);
+
+function applyFilters() {
+    const [sortField, sortDir] = sortBy.value.split('|');
+
+    router.get(route('transactions.index'), {
+        search: search.value || undefined,
+        gateway: gatewayFilter.value !== 'all' ? gatewayFilter.value : undefined,
+        sort_by: sortField,
+        sort_direction: sortDir,
+    }, {
+        preserveState: true,
+        replace: true,
+    });
+}
 
 function formatCurrency(amount) {
     return new Intl.NumberFormat('en-US', {
@@ -47,6 +74,32 @@ function formatDate(dateString) {
                 >
                     {{ $page.props.flash.success }}
                 </div>
+
+                <!-- Search and Filter -->
+                    <div class="mb-4 flex items-center space-x-4">
+                        <input v-model="search" @keyup.enter="applyFilters" placeholder="Search transactions..."
+                            class="px-3 py-2 border border-gray-300 rounded-md w-64 text-sm">
+
+                        <select v-model="gatewayFilter" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-24">
+                            <option value="all" selected>All</option>
+                            <option value="stripe">Stripe</option>
+                            <option value="manual">Manual</option>
+                        </select>
+
+                        <select v-model="sortBy" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-40">
+                            <option value="created_at|desc">Newest First</option>
+                            <option value="created_at|asc">Oldest First</option>
+                            <option value="amount|asc">Amount Low-High</option>
+                            <option value="amount|desc">Amount High-Low</option>
+                        </select>
+
+                        <button @click="applyFilters"
+                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            Search
+                        </button>
+                    </div>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-auto">

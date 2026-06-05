@@ -11,12 +11,51 @@ use Inertia\Response;
 
 class CustomerController extends Controller
 {
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $customers = Customer::latest()->paginate(15);
+        $query = Customer::query();
+
+        // Search filter — matches name, email, phone, or company
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('phone', 'like', "%{$search}%")
+                  ->orWhere('company', 'like', "%{$search}%");
+            });
+        }
+
+        // Status filter
+        if ($status = $request->input('status')) {
+            if (in_array($status, ['active', 'inactive'])) {
+                $query->where('status', $status);
+            }
+        }
+
+        // Sorting
+        $allowedSortColumns = ['name', 'email', 'created_at'];
+        $sortBy = $request->input('sort_by', 'created_at');
+        $sortDirection = $request->input('sort_direction', 'desc');
+
+        if (! in_array($sortBy, $allowedSortColumns)) {
+            $sortBy = 'created_at';
+        }
+        if (! in_array($sortDirection, ['asc', 'desc'])) {
+            $sortDirection = 'desc';
+        }
+
+        $query->orderBy($sortBy, $sortDirection);
+
+        $customers = $query->paginate(15)->withQueryString();
 
         return Inertia::render('Customers/Index', [
             'customers' => $customers,
+            'filters'   => [
+                'search'         => $request->input('search', ''),
+                'status'         => $request->input('status', 'all'),
+                'sort_by'        => $sortBy,
+                'sort_direction' => $sortDirection,
+            ],
         ]);
     }
 

@@ -17,4 +17,8 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        host: '127.0.0.1', // Forces IPv4 instead of the [::1] IPv6 address
+        cors: true,        // Explicitly allows cross-origin requests from Valet
+    },
 });

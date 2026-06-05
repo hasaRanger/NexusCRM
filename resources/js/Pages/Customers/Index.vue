@@ -6,12 +6,42 @@ import StatusBadge from '@/Components/StatusBadge.vue';
 import ConfirmModal from '@/Components/ConfirmModal.vue';
 import {Plus ,Trash, Wrench, ShieldCheck, ShieldBan} from "lucide-vue-next";
 
-defineProps({
+const props = defineProps({
     customers: {
         type: Object,
         required: true,
     },
+    filters: {
+        type: Object,
+        default: () => ({
+            search: '',
+            status: 'all',
+            sort_by: 'created_at',
+            sort_direction: 'desc',
+        }),
+    },
 });
+
+// Reactive state initialized from server-provided filters
+const search = ref(props.filters.search ?? '');
+const statusFilter = ref(props.filters.status ?? 'all');
+const sortBy = ref(
+    `${props.filters.sort_by ?? 'created_at'}|${props.filters.sort_direction ?? 'desc'}`
+);
+
+function applyFilters() {
+    const [sortField, sortDir] = sortBy.value.split('|');
+
+    router.get(route('customers.index'), {
+        search: search.value || undefined,
+        status: statusFilter.value !== 'all' ? statusFilter.value : undefined,
+        sort_by: sortField,
+        sort_direction: sortDir,
+    }, {
+        preserveState: true,
+        replace: true,
+    });
+}
 
 const confirmingDeleteId = ref(null);
 
@@ -49,14 +79,43 @@ function toggleStatus(customer) {
                     {{ $page.props.flash.success }}
                 </div>
 
-                <!-- Add New Customer -->
-                <div class="flex justify-end mb-4">
-                    <Link :href="route('customers.create')"
-                        class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
-                        <Plus class="w-5 h-5" />
-                        New Customer
-                    </Link>
+                <div class="flex items-center justify-between">
+                    <!-- Search and Filter -->
+                    <div class="mb-4 flex items-center space-x-4">
+                        <input v-model="search" @keyup.enter="applyFilters" placeholder="Search customers..."
+                            class="px-3 py-2 border border-gray-300 rounded-md w-64 text-sm">
+
+                        <select v-model="statusFilter" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-28">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+
+                        <select v-model="sortBy" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-32">
+                            <option value="created_at|desc">Newest First</option>
+                            <option value="created_at|asc">Oldest First</option>
+                            <option value="name|asc">Name A-Z</option>
+                            <option value="name|desc">Name Z-A</option>
+                        </select>
+
+                        <button @click="applyFilters"
+                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            Search
+                        </button>
+                    </div>
+
+                    <!-- Add New Customer -->
+                    <div class="flex justify-end mb-4">
+                        <Link :href="route('customers.create')"
+                            class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
+                            <Plus class="w-5 h-5" />
+                            New Customer
+                        </Link>
+                    </div>
                 </div>
+                
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-auto">

@@ -6,12 +6,45 @@ import StatusBadge from '@/Components/StatusBadge.vue';
 import ConfirmModal from '@/Components/ConfirmModal.vue';
 import { Plus, Trash, Wrench } from 'lucide-vue-next';
 
-defineProps({
+const props = defineProps({
     proposals: {
         type: Object,
         required: true,
     },
+    filters: {
+        type: Object,
+        default: () => ({
+            search: '',
+            status: 'all',
+        }),
+    },
+    sort: {
+        type: Object,
+        default: () => ({
+            sort_by: 'created_at',
+            sort_direction: 'desc',
+        }),
+    },
 });
+
+// Reactive state initialized from server-provided filters
+const search = ref(props.filters.search ?? '');
+const statusFilter = ref(props.filters.status ?? 'all');
+const sortBy = ref(props.sort.sort_by + '|' + props.sort.sort_direction);
+
+function applyFilters() {
+    const [sortField, sortDir] = sortBy.value.split('|');
+
+    router.get(route('proposals.index'), {
+        search: search.value || undefined,
+        status: statusFilter.value !== 'all' ? statusFilter.value : undefined,
+        sort_by: sortField,
+        sort_direction: sortDir,
+    }, {
+        preserveState: true,
+        replace: true,
+    });
+}
 
 const confirmingDeleteId = ref(null);
 
@@ -75,13 +108,43 @@ function formatDate(dateString) {
                     {{ $page.props.flash.success }}
                 </div>
 
-                <!-- Add New Proposal -->
-                 <div class="flex justify-end mb-4">
-                    <Link :href="route('proposals.create')"
-                        class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
-                        <Plus class="w-4 h-4" />
-                        New Proposal
-                    </Link>
+                <div class="flex items-center justify-between">
+                    <!-- Search and Filter -->
+                    <div class="mb-4 flex items-center space-x-4">
+                        <input v-model="search" @keyup.enter="applyFilters" placeholder="Search proposals..."
+                            class="px-3 py-2 border border-gray-300 rounded-md w-64 text-sm">
+
+                        <select v-model="statusFilter" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-28">
+                            <option value="all">All Status</option>
+                            <option value="draft">Draft</option>
+                            <option value="sent">Sent</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+
+                        <select v-model="sortBy" @change="applyFilters"
+                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-32">
+                            <option value="created_at|desc">Newest First</option>
+                            <option value="created_at|asc">Oldest First</option>
+                            <option value="title|asc">Title A-Z</option>
+                            <option value="title|desc">Title Z-A</option>
+                        </select>
+
+                        <button @click="applyFilters"
+                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            Search
+                        </button>
+                    </div>
+
+                    <!-- Add New Proposal -->
+                    <div class="flex justify-end mb-4">
+                        <Link :href="route('proposals.create')"
+                            class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
+                            <Plus class="w-4 h-4" />
+                            New Proposal
+                        </Link>
+                    </div>
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -107,7 +170,8 @@ function formatDate(dateString) {
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ proposal.title }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 min-w-[120px] max-w-[200px] overflow-hidden text-ellipsis"
+                                        :title="proposal.customer?.name ?? ''">
                                         {{ proposal.customer?.name ?? '—' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">

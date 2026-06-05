@@ -16,14 +16,54 @@ use Stripe\Stripe;
 
 class InvoiceController extends Controller
 {
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $invoices = Invoice::with('customer:id,name')
-            ->latest()
-            ->paginate(15);
+        $invoices = Invoice::query();
+
+        if($search = $request->input('search')) {
+            $invoices->where(function ($q) use ($search) {
+                $q->where('invoice_number', 'like', "%$search%")
+                  ->orWhere('amount', 'like', "%$search%")
+                  ->orWhere('tax', 'like', "%$search%")
+                  ->orWhere('due_date', 'like', "%$search%")
+                  ->orWhereHas('customer', function ($c) use ($search) {
+                      $c->where('name', 'like', "%$search%");
+                  });
+            });
+        }
+
+        if($status = $request->input('status')) {
+            if(in_array($status, ['draft', 'sent', 'paid'])) {
+                $invoices->where('status', $status);
+            }
+        }
+
+        $allowedSortColumn = ['invoice_number', 'amount', 'tax', 'due_date', 'created_at'];
+        $sortBy = $request->input('sort_by') ?? 'created_at';
+        $sortDirection = $request->input('sort_direction') ?? 'desc';
+
+        if(! in_array($sortBy, $allowedSortColumn)) {
+            $sortBy = 'created_at';
+        }
+
+        if(! in_array($sortDirection, ['asc', 'desc'])) {
+            $sortDirection = 'desc';
+        }
+
+        $invoices->orderBy($sortBy, $sortDirection);
+
+        $invoices = $invoices->with('customer:id,name')->paginate(15)->withQueryString();
 
         return Inertia::render('Invoices/Index', [
             'invoices' => $invoices,
+            'filters'   => [
+                'search' => $request->input('search', ''),
+                'status' => $request->input('status', 'all'),
+            ],
+            'sort'     => [
+                'sort_by'        => $sortBy,
+                'sort_direction' => $sortDirection,
+            ],
         ]);
     }
 

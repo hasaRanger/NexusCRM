@@ -11,14 +11,55 @@ use Inertia\Response;
 
 class ProposalController extends Controller
 {
-    public function index(): Response
-    {
-        $proposals = Proposal::with('customer:id,name')
-            ->latest()
-            ->paginate(15);
+    public function index(Request $request): Response
+    {        
+        $proposals = Proposal::query();
+
+        // Apply customer name filtering if search term is provided
+        if ($search = $request->input('search')) {
+            $proposals->whereHas('customer', function ($p) use ($search) {
+                $p->where('title', 'like', '%' . $search . '%')
+                   ->orWhere('description', 'like', '%' . $search . '%')
+                   ->orWhere('amount', 'like', '%' . $search . '%')
+                   ->orWhere('valid_until', 'like', '%' . $search . '%')
+                   ->orWhere('created_at', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Apply status filtering
+        if ($status = $request->input('status')) {
+            if(in_array($status, ['draft', 'sent', 'accepted', 'rejected'])){
+                $proposals->where('status', $status);
+            }
+        }
+
+        // Apply sorting
+        $allowedSortColumns = ['title', 'description', 'amount', 'valid_until', 'created_at'];
+        $sortBy = $request->input('sort_by') ?? 'created_at';
+        $sortDirection = $request->input('sort_direction') ?? 'desc';
+
+        if (! in_array($sortBy, $allowedSortColumns)) {
+            $sortBy = 'created_at';
+        }
+
+        if (! in_array($sortDirection, ['asc', 'desc'])) {
+            $sortDirection = 'desc';
+        }
+
+        $proposals->orderBy($sortBy, $sortDirection);
+
+        $proposals = $proposals->with('customer:id,name')->paginate(15)->withQueryString();
 
         return Inertia::render('Proposals/Index', [
             'proposals' => $proposals,
+            'filters'   => [
+                'search' => $request->input('search', ''),
+                'status' => $request->input('status', 'all'),
+            ],
+            'sort'      => [
+                'sort_by'        => $sortBy,
+                'sort_direction' => $sortDirection,
+            ],
         ]);
     }
 
