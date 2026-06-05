@@ -22,6 +22,7 @@
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
+          <CircleGauge class="w-4 h-4 mr-1" />
             Dashboard
           </Link>
           <Link
@@ -33,6 +34,7 @@
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
+          <UserRound class="w-4 h-4 mr-1" />
             Customers
           </Link>
           <Link
@@ -44,6 +46,7 @@
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
+          <Handshake class="w-4 h-4 mr-1" />
             Proposals
           </Link>
           <Link
@@ -55,6 +58,7 @@
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
+          <Receipt class="w-4 h-4 mr-1" />
             Invoices
           </Link>
           <Link
@@ -66,6 +70,7 @@
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
+          <HandCoins class="w-4 h-4 mr-1" />
             Transactions
           </Link>
         </div>
@@ -136,7 +141,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { Head, Link, usePage, router } from '@inertiajs/vue3'
-import { User, LogOut, ChevronRight } from 'lucide-vue-next'
+import { User, LogOut, ChevronRight, CircleGauge, UserRound, Handshake, Receipt, HandCoins } from 'lucide-vue-next'
 import FlashMessage from '@/Components/FlashMessage.vue'
 
 defineProps({
