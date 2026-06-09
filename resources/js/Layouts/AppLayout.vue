@@ -2,14 +2,14 @@
   <Head :title="title" />
   <div class="min-h-screen bg-gray-300 flex">
     
-    <nav class="w-64 bg-gray-200 flex flex-col justify-between sticky top-0 h-screen z-20">
+    <nav class="w-64 bg-indigo-800 flex flex-col justify-between sticky top-0 h-screen z-20">
       
-      <div>
-        <div class="h-16 flex items-center justify-start px-6 border-b bg-gray-200">
+      <div class="bg-indigo-800">
+        <div class="h-16 flex items-center justify-start px-6  ">
           <Link href="/dashboard">
-          <img src="/logo.jpg" alt="Logo" class="w-12 h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
+            <img src="/logo.jpg" alt="Logo"
+              class="w-12 h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
           </Link>
-          <!-- <div class="text-3xl font-extrabold text-gray-900">NexusCRM</div> -->
         </div>
         
         <div class="flex flex-col space-y-1 mt-6 px-3 transition-all ease-in-out">
@@ -17,8 +17,8 @@
             href="/dashboard"
             :class="[
               isActive('/dashboard')
-                ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
+                ? 'bg-indigo-600 text-white'
+                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -29,8 +29,8 @@
             href="/customers"
             :class="[
               isActive('/customers')
-                ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
+                ? 'bg-indigo-600 text-white'
+                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -41,8 +41,8 @@
             href="/proposals"
             :class="[
               isActive('/proposals')
-                ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
+                 ? 'bg-indigo-600 text-white'
+                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -53,8 +53,8 @@
             href="/invoices"
             :class="[
               isActive('/invoices')
-                ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
+                ? 'bg-indigo-600 text-white'
+                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -65,8 +65,8 @@
             href="/transactions"
             :class="[
               isActive('/transactions')
-                ? 'bg-gray-300 text-indigo-700'
-                : 'text-gray-600 hover:bg-gray-300 hover:text-gray-900',
+                  ? 'bg-indigo-600 text-white'
+                  : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
               'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
             ]"
           >
@@ -76,12 +76,12 @@
         </div>
       </div>
 
-      <div class="p-4 border-t border-gray-200 relative">
+      <div class="p-4 relative ">
         <button
           @click="isProfileOpen = !isProfileOpen"
-          class="flex items-center w-full space-x-3 text-gray-700 hover:text-gray-900 focus:outline-none rounded-md p-2 hover:bg-gray-300 transition-colors"
+          class="flex items-center w-full space-x-3 text-white hover:text-white focus:bg-indigo-700 rounded-md p-2 hover:bg-indigo-700 transition-colors ease-in-out"
         >
-          <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+          <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
             {{ userInitial }}
           </div>
           <span class="text-sm font-medium flex-1 text-left truncate">{{ $page.props.auth.user.name }}</span>
