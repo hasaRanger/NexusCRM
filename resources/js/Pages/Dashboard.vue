@@ -2,7 +2,7 @@
 import { usePage } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { Users, ClipboardCheck, CircleDollarSign, BanknoteArrowUp, User, TrendingUp } from 'lucide-vue-next'
-import SemiCircleChart from '@/Components/SemiCircleChart.vue'
+import ShadcnGaugeChart from '@/Components/ShadcnGaugeChart.vue'
 import PieChart from '@/Components/PieChart.vue'
 import { Link } from '@inertiajs/vue3'
 
@@ -128,7 +128,7 @@ function formatCurrency(amount) {
                     <p class="text-indigo-600 text-xs font-medium">+3.2% vs last quater</p>
                 </div>
                 <!-- Semi Circular Progress Bar -->
-                <SemiCircleChart height="300" :amount="stats.transactions_sum_amount" :target="1000"/>
+                <ShadcnGaugeChart height="200" :amount="stats.transactions_sum_amount" :target="1000"/>
             </div>
         </div>
 
