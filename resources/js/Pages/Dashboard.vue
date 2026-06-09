@@ -3,7 +3,7 @@ import { usePage } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import { Users, ClipboardCheck, CircleDollarSign, BanknoteArrowUp, User, TrendingUp } from 'lucide-vue-next'
 import ShadcnGaugeChart from '@/Components/ShadcnGaugeChart.vue'
-import PieChart from '@/Components/PieChart.vue'
+import ShadcnPieChart from '@/Components/ShadcnPieChart.vue'
 import { Link } from '@inertiajs/vue3'
 
 const $page = usePage()
@@ -140,7 +140,7 @@ function formatCurrency(amount) {
                 </p>
                 <!-- Pie Chart - Invoice Distribution -->
                  <Link href="/invoices">
-                    <PieChart height="300" :series="invoiceStatusSeries" :labels="invoiceStatusLabels" />
+                    <ShadcnPieChart height="300" :series="invoiceStatusSeries" :labels="invoiceStatusLabels" />
                  </Link>
             </div>
 
