@@ -15,9 +15,9 @@ defineProps({
 <template>
     <Head title="NexusCRM | CRM for Modern Teams" icon="/favicon.jpg"/>
 
-    <div class="min-h-screen bg-gray-50 text-gray-800 font-sans selection:bg-indigo-500 selection:text-white">
+    <div class="min-h-screen bg-gradient-to-br from-indigo-500 to-indigo-100 text-gray-800 font-sans selection:bg-indigo-500 selection:text-white">
         <!-- Navigation Bar -->
-        <header class="border-b border-gray-200 bg-white sticky top-0 z-50">
+        <header class="bg-transparent sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center gap-2">
@@ -57,12 +57,7 @@ defineProps({
         </header>
 
         <!-- Hero Section -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 text-center">
-            <!-- Badge -->
-            <!-- <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-semibold text-indigo-700 mb-8">
-                <Sparkles class="w-3.5 h-3.5" />
-                Next Generation Sales CRM
-            </div> -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 text-center">
 
             <!-- Title -->
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight max-w-4xl mx-auto">
@@ -88,14 +83,14 @@ defineProps({
                     <Link
                         v-if="canRegister"
                         :href="route('register')"
-                        class="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md shadow-sm transition flex items-center justify-center gap-2"
+                        class="w-full sm:w-auto px-6 py-3 border-2 border-gray-700 hover:border-indigo-600 hover:text-indigo-600 text-gray-700 font-medium rounded-3xl shadow-sm transition flex items-center justify-center gap-2"
                     >
                         Start Free Trial
                         <ArrowRight class="w-4 h-4" />
                     </Link>
                     <Link
                         :href="route('login')"
-                        class="w-full sm:w-auto px-6 py-3 bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium rounded-md shadow-sm transition flex items-center justify-center"
+                        class="w-full sm:w-auto px-6 py-3 bg-gray-800 hover:bg-indigo-600 text-white font-medium rounded-3xl shadow-sm transition flex items-center justify-center"
                     >
                         Sign In
                     </Link>
@@ -105,8 +100,8 @@ defineProps({
             <!-- Features Showcase Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-8">
                 <!-- Feature 1 -->
-                <div class="p-6 rounded-xl bg-white border border-gray-200 hover:shadow-md transition">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 mb-5">
+                <div class="p-6 rounded-xl bg-indigo-300 hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-200 flex items-center justify-center text-indigo-600 mb-5">
                         <Users class="w-5 h-5" />
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Customer Hub</h3>
@@ -116,8 +111,8 @@ defineProps({
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="p-6 rounded-xl bg-white border border-gray-200 hover:shadow-md transition">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 mb-5">
+                <div class="p-6 rounded-xl bg-indigo-300 hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-200 flex items-center justify-center text-indigo-600 mb-5">
                         <FileText class="w-5 h-5" />
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Proposals</h3>
@@ -127,8 +122,8 @@ defineProps({
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="p-6 rounded-xl bg-white border border-gray-200 hover:shadow-md transition">
-                    <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 mb-5">
+                <div class="p-6 rounded-xl bg-indigo-300 hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-lg bg-indigo-200 flex items-center justify-center text-indigo-600 mb-5">
                         <TrendingUp class="w-5 h-5" />
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2">Insights & Growth</h3>
@@ -140,7 +135,7 @@ defineProps({
         </section>
 
         <!-- Stats Section -->
-        <section class="border-t border-gray-200 bg-white py-12">
+        <section class="py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div>
@@ -164,7 +159,7 @@ defineProps({
         </section>
 
         <!-- Footer -->
-        <footer class="border-t border-gray-200 py-8 bg-white text-gray-500 text-xs">
+        <footer class="border-t border-indigo-200 py-8 text-gray-500 text-xs">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
                     &copy; 2026 NexusCRM. All rights reserved.
