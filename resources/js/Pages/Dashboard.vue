@@ -53,10 +53,10 @@ function formatCurrency(amount) {
         <div class="grid grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
             <div class="col-span-3 bg-gray-200 p-10 rounded-lg">
                 <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Sales Pipeline</h2>
-                <p class="text-gray-500 text-sm font-medium mb-4">Key metrics across your customer lifecycle.</p>
+                <p class="text-gray-500 text-sm font-medium mb-6">Key metrics across your customer lifecycle.</p>
                 <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
                     <!-- Total Customers Card -->
-                    <Link href="/customers" class="bg-gray-300 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <Link href="/customers" class="bg-indigo-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
                         <div class="flex flex-col justify-between">
                             <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
                                 <Users class="w-6 h-6 text-blue-600" />
@@ -70,7 +70,7 @@ function formatCurrency(amount) {
                     </Link>
 
                     <!-- Total Proposals Card -->
-                    <Link href="/proposals" class="bg-gray-300 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <Link href="/proposals" class="bg-indigo-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
                         <div class="flex flex-col justify-between">
                             <div class="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center">
                                 <ClipboardCheck class="w-6 h-6 text-red-600" />
@@ -84,7 +84,7 @@ function formatCurrency(amount) {
                     </Link>
 
                     <!-- Total Invoices Card -->
-                    <Link href="/invoices" class="bg-gray-300 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <Link href="/invoices" class="bg-indigo-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
                         <div class="flex flex-col justify-between">
                             <div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center">
                                 <CircleDollarSign class="w-6 h-6 text-yellow-600" />
@@ -98,7 +98,7 @@ function formatCurrency(amount) {
                     </Link>
 
                     <!-- Total Transactions Card -->
-                    <Link href="/transactions" class="bg-gray-300 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <Link href="/transactions" class="bg-indigo-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
                         <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
                             <BanknoteArrowUp class="w-6 h-6 text-green-600" />
                         </div>

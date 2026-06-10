@@ -28,7 +28,7 @@ const data = computed(() => [
 ])
 
 const valueAccessor = (d) => d.value
-const colorAccessor = (d, i) => i === 0 ? '#4f46e5' : '#d1d5db' // Indigo-600 vs Gray-200
+const colorAccessor = (d, i) => i === 0 ? '#4f46e5' : '#c7d2fe' // Indigo-600 vs Gray-200
 </script>
 
 <template>

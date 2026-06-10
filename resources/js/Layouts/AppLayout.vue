@@ -1,91 +1,91 @@
 <template>
   <Head :title="title" />
-  <div class="min-h-screen bg-gray-300 flex">
+  <div class="min-h-screen bg-indigo-200 flex">
     
-    <nav class="w-64 bg-indigo-800 flex flex-col justify-between sticky top-0 h-screen z-20">
+    <nav class="w-16 lg:w-64 bg-indigo-900 flex flex-col justify-between sticky top-0 h-screen z-20 transition-all duration-300">
       
-      <div class="bg-indigo-800">
-        <div class="h-16 flex items-center justify-start px-6  ">
+      <div class="bg-indigo-900">
+        <div class="h-16 flex items-center justify-center lg:justify-start lg:px-6">
           <Link href="/dashboard">
             <img src="/logo.jpg" alt="Logo"
-              class="w-12 h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
+              class="w-10 h-10 lg:w-12 lg:h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
           </Link>
         </div>
         
-        <div class="flex flex-col space-y-1 mt-6 px-3 transition-all ease-in-out">
+        <div class="flex flex-col space-y-1 mt-6 px-2 lg:px-3 transition-all ease-in-out">
           <Link
             href="/dashboard"
             :class="[
               isActive('/dashboard')
-                ? 'bg-indigo-600 text-white'
-                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
-              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
+                ? 'bg-indigo-800 text-white'
+                : 'text-gray-300 hover:bg-indigo-800 hover:text-white',
+              'p-2 lg:px-3 lg:py-2 rounded-md text-sm font-extrabold transition-colors flex items-center justify-center lg:justify-start'
             ]"
           >
-          <CircleGauge class="w-4 h-4 mr-1" />
-            Dashboard
+          <CircleGauge class="w-5 h-5 lg:w-4 lg:h-4 lg:mr-2 flex-shrink-0" />
+            <span class="hidden lg:block">Dashboard</span>
           </Link>
           <Link
             href="/customers"
             :class="[
               isActive('/customers')
-                ? 'bg-indigo-600 text-white'
-                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
-              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
+                ? 'bg-indigo-800 text-white'
+                : 'text-gray-300 hover:bg-indigo-800 hover:text-white',
+              'p-2 lg:px-3 lg:py-2 rounded-md text-sm font-extrabold transition-colors flex items-center justify-center lg:justify-start'
             ]"
           >
-          <UserRound class="w-4 h-4 mr-1" />
-            Customers
+          <UserRound class="w-5 h-5 lg:w-4 lg:h-4 lg:mr-2 flex-shrink-0" />
+            <span class="hidden lg:block">Customers</span>
           </Link>
           <Link
             href="/proposals"
             :class="[
               isActive('/proposals')
-                 ? 'bg-indigo-600 text-white'
-                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
-              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
+                 ? 'bg-indigo-800 text-white'
+                : 'text-gray-300 hover:bg-indigo-800 hover:text-white',
+              'p-2 lg:px-3 lg:py-2 rounded-md text-sm font-extrabold transition-colors flex items-center justify-center lg:justify-start'
             ]"
           >
-          <Handshake class="w-4 h-4 mr-1" />
-            Proposals
+          <Handshake class="w-5 h-5 lg:w-4 lg:h-4 lg:mr-2 flex-shrink-0" />
+            <span class="hidden lg:block">Proposals</span>
           </Link>
           <Link
             href="/invoices"
             :class="[
               isActive('/invoices')
-                ? 'bg-indigo-600 text-white'
-                : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
-              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
+                ? 'bg-indigo-800 text-white'
+                : 'text-gray-300 hover:bg-indigo-800 hover:text-white',
+              'p-2 lg:px-3 lg:py-2 rounded-md text-sm font-extrabold transition-colors flex items-center justify-center lg:justify-start'
             ]"
           >
-          <Receipt class="w-4 h-4 mr-1" />
-            Invoices
+          <Receipt class="w-5 h-5 lg:w-4 lg:h-4 lg:mr-2 flex-shrink-0" />
+            <span class="hidden lg:block">Invoices</span>
           </Link>
           <Link
             href="/transactions"
             :class="[
               isActive('/transactions')
-                  ? 'bg-indigo-600 text-white'
-                  : 'text-gray-300 hover:bg-indigo-600 hover:text-white',
-              'px-3 py-2 rounded-md text-sm font-extrabold transition-colors flex items-center'
+                  ? 'bg-indigo-800 text-white'
+                  : 'text-gray-300 hover:bg-indigo-800 hover:text-white',
+              'p-2 lg:px-3 lg:py-2 rounded-md text-sm font-extrabold transition-colors flex items-center justify-center lg:justify-start'
             ]"
           >
-          <HandCoins class="w-4 h-4 mr-1" />
-            Transactions
+          <HandCoins class="w-5 h-5 lg:w-4 lg:h-4 lg:mr-2 flex-shrink-0" />
+            <span class="hidden lg:block">Transactions</span>
           </Link>
         </div>
       </div>
 
-      <div class="p-4 relative ">
+      <div class="p-2 lg:p-4 relative">
         <button
           @click="isProfileOpen = !isProfileOpen"
-          class="flex items-center w-full space-x-3 text-white hover:text-white focus:bg-indigo-700 rounded-md p-2 hover:bg-indigo-700 transition-colors ease-in-out"
+          class="flex items-center justify-center lg:justify-start w-full lg:space-x-3 text-white hover:text-white focus:bg-indigo-800 rounded-md p-2 hover:bg-indigo-800 transition-colors ease-in-out"
         >
-          <div class="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+          <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
             {{ userInitial }}
           </div>
-          <span class="text-sm font-medium flex-1 text-left truncate">{{ $page.props.auth.user.name }}</span>
-          <ChevronRight class="w-4 h-4 text-gray-400" />            
+          <span class="text-sm font-medium flex-1 text-left truncate hidden lg:block">{{ $page.props.auth.user.name }}</span>
+          <ChevronRight class="w-4 h-4 text-gray-400 hidden lg:block" />            
         </button>
 
         <div
@@ -122,7 +122,7 @@
       <FlashMessage />
 
       <!-- Page Heading -->
-      <header class="bg-gray-200 shadow-sm border-b border-gray-100 text-left" v-if="$slots.header">
+      <header class="bg-indigo-100 shadow-sm border-b border-gray-100 text-left" v-if="$slots.header">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <slot name="header" />
         </div>
