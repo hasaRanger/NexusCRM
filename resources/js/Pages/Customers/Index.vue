@@ -118,7 +118,7 @@ function toggleStatus(customer) {
                 
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="overflow-x-auto">
+                    <div class="overflow-x-hidden">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -152,7 +152,7 @@ function toggleStatus(customer) {
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <StatusBadge :status="customer.status" />
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm space-x-5 flex items-center">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm space-x-3 flex items-center">
                                         <Link
                                             :href="route('customers.edit', customer.id)"
                                             class="text-indigo-600 hover:text-indigo-900 font-medium"
