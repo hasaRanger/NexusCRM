@@ -68,7 +68,7 @@ function toggleStatus(customer) {
     <AppLayout title="Customers | NexusCRM">
         <template #header>
             <div class="flex items-center justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Customers</h2>
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-foreground leading-tight">Customers</h2>
             </div>
         </template>
 
@@ -83,17 +83,17 @@ function toggleStatus(customer) {
                     <!-- Search and Filter -->
                     <div class="mb-4 flex items-center space-x-4">
                         <input v-model="search" @keyup.enter="applyFilters" placeholder="Search customers..."
-                            class="px-3 py-2 border border-gray-300 rounded-md w-64 text-sm">
+                            class="px-3 py-2 border border-gray-300 dark:border-border dark:bg-secondary dark:text-foreground rounded-md w-64 text-sm">
 
                         <select v-model="statusFilter" @change="applyFilters"
-                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-28">
+                            class="px-3 py-2 border border-gray-300 dark:border-border dark:bg-secondary dark:text-foreground rounded-md text-sm w-28">
                             <option value="all">All Status</option>
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
                         </select>
 
                         <select v-model="sortBy" @change="applyFilters"
-                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-32">
+                            class="px-3 py-2 border border-gray-300 dark:border-border dark:bg-secondary dark:text-foreground rounded-md text-sm w-32">
                             <option value="created_at|desc">Newest First</option>
                             <option value="created_at|asc">Oldest First</option>
                             <option value="name|asc">Name A-Z</option>
@@ -101,7 +101,7 @@ function toggleStatus(customer) {
                         </select>
 
                         <button @click="applyFilters"
-                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            class="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-400 transition">
                             Search
                         </button>
                     </div>
@@ -109,7 +109,7 @@ function toggleStatus(customer) {
                     <!-- Add New Customer -->
                     <div class="flex justify-end mb-4">
                         <Link :href="route('customers.create')"
-                            class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
+                            class="flex items-center gap-2 px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-400 transition">
                             <Plus class="w-5 h-5" />
                             New Customer
                         </Link>
@@ -117,36 +117,36 @@ function toggleStatus(customer) {
                 </div>
                 
 
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white dark:bg-card overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-hidden">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-border">
+                            <thead class="bg-gray-50 dark:bg-secondary">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Phone</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Company</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="bg-white dark:bg-card divide-y divide-gray-200 dark:divide-border">
                                 <tr v-if="customers.data.length === 0">
-                                    <td colspan="6" class="px-6 py-12 text-center text-gray-500 text-sm">
+                                    <td colspan="6" class="px-6 py-12 text-center text-gray-500 dark:text-muted-foreground text-sm">
                                         No customers found.
                                     </td>
                                 </tr>
-                                <tr v-for="customer in customers.data" :key="customer.id" class="hover:bg-gray-300">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <tr v-for="customer in customers.data" :key="customer.id" class="hover:bg-gray-50 dark:hover:bg-accent">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-foreground">
                                         {{ customer.name }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-muted-foreground">
                                         {{ customer.email }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-muted-foreground">
                                         {{ customer.phone ?? '—' }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-muted-foreground">
                                         {{ customer.company ?? '—' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -184,20 +184,20 @@ function toggleStatus(customer) {
                     </div>
 
                     <!-- Pagination -->
-                    <div v-if="customers.links.length > 3" class="px-6 py-4 border-t border-gray-200 flex flex-wrap gap-1">
+                    <div v-if="customers.links.length > 3" class="px-6 py-4 border-t border-gray-200 dark:border-border flex flex-wrap gap-1">
                         <template v-for="link in customers.links" :key="link.label">
                             <Link
                                 v-if="link.url"
                                 :href="link.url"
                                 class="px-3 py-1 text-sm rounded border"
                                 :class="link.active
-                                    ? 'bg-gray-800 text-white border-gray-800'
-                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'"
+                                    ? 'bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500'
+                                    : 'bg-white dark:bg-secondary text-gray-700 dark:text-gray-300 border-gray-300 dark:border-border hover:bg-gray-50 dark:hover:bg-accent'"
                                 v-html="link.label"
                             />
                             <span
                                 v-else
-                                class="px-3 py-1 text-sm rounded border border-gray-200 text-gray-400 cursor-not-allowed"
+                                class="px-3 py-1 text-sm rounded border border-gray-200 dark:border-border text-gray-400 dark:text-gray-500 cursor-not-allowed"
                                 v-html="link.label"
                             />
                         </template>

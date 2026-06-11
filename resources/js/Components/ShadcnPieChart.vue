@@ -43,8 +43,8 @@ const tooltipTriggers = {
     return `
       <div class="flex items-center gap-2 px-1 py-1 rounded-lg z-50 relative">
         <div class="w-3 h-3 rounded-full" style="background-color: ${color}"></div>
-        <span class="font-semibold text-sm text-gray-900">${item.name}</span>
-        <span class="font-extrabold text-sm text-gray-700 ml-2">${percentage}%</span>
+        <span class="font-semibold text-sm text-gray-900 dark:text-white">${item.name}</span>
+        <span class="font-extrabold text-sm text-gray-700 dark:text-gray-300 ml-2">${percentage}%</span>
       </div>
     `
   }
@@ -69,7 +69,7 @@ const tooltipTriggers = {
     <div class="flex flex-col justify-center gap-5 col-span-1 ml-10">
       <div v-for="(item, index) in data" :key="item.name" class="flex items-center gap-3">
         <div class="w-4 h-4 rounded-full shadow-sm flex-shrink-0" :style="{ backgroundColor: colors[index % colors.length] }"></div>
-        <span class="text-sm font-bold text-gray-700 whitespace-nowrap">{{ item.name }}</span>
+        <span class="text-sm font-bold text-gray-700 dark:text-gray-300 whitespace-nowrap">{{ item.name }}</span>
       </div>
     </div>
   </div>

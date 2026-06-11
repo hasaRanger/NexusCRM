@@ -97,7 +97,7 @@ function formatDate(dateString) {
     <AppLayout title="Invoices | NexusCRM">
         <template #header>
             <div class="flex items-center justify-between">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Invoices</h2>
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-foreground leading-tight">Invoices</h2>
                 
             </div>
         </template>
@@ -116,10 +116,10 @@ function formatDate(dateString) {
                     <!-- Search and Filter -->
                     <div class="mb-4 flex items-center space-x-4">
                         <input v-model="search" @keyup.enter="applyFilters" placeholder="Search invoices..."
-                            class="px-3 py-2 border border-gray-300 rounded-md w-64 text-sm">
+                            class="px-3 py-2 border border-gray-300 dark:border-border dark:bg-secondary dark:text-foreground rounded-md w-64 text-sm">
 
                         <select v-model="statusFilter" @change="applyFilters"
-                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-28">
+                            class="px-3 py-2 border border-gray-300 dark:border-border dark:bg-secondary dark:text-foreground rounded-md text-sm w-28">
                             <option value="all" selected>All Status</option>
                             <option value="draft">Draft</option>
                             <option value="sent">Sent</option>
@@ -127,7 +127,7 @@ function formatDate(dateString) {
                         </select>
 
                         <select v-model="sortBy" @change="applyFilters"
-                            class="px-3 py-2 border border-gray-300 rounded-md text-sm w-40">
+                            class="px-3 py-2 border border-gray-300 dark:border-border dark:bg-secondary dark:text-foreground rounded-md text-sm w-40">
                             <option value="created_at|desc">Newest First</option>
                             <option value="created_at|asc">Oldest First</option>
                             <option value="amount|asc">Amount Low-High</option>
@@ -135,7 +135,7 @@ function formatDate(dateString) {
                         </select>
 
                         <button @click="applyFilters"
-                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            class="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-400 transition">
                             Search
                         </button>
                     </div>
@@ -143,7 +143,7 @@ function formatDate(dateString) {
                     <!-- Add New Invoice -->
                     <div class="flex justify-end">
                         <Link :href="route('invoices.create')"
-                            class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition mb-4">
+                            class="flex items-center gap-2 px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-400 transition mb-4">
                             <Plus class="w-4 h-4" />
                             New Invoice
                         </Link>
@@ -151,40 +151,40 @@ function formatDate(dateString) {
                 </div>
                 
 
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white dark:bg-card overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-border">
+                            <thead class="bg-gray-50 dark:bg-secondary">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice No.</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tax</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Invoice No.</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Customer</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Amount</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Tax</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Due Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-muted-foreground uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="bg-white dark:bg-card divide-y divide-gray-200 dark:divide-border">
                                 <tr v-if="invoices.data.length === 0">
-                                    <td colspan="7" class="px-6 py-12 text-center text-gray-500 text-sm">
+                                    <td colspan="7" class="px-6 py-12 text-center text-gray-500 dark:text-muted-foreground text-sm">
                                         No invoices found.
                                     </td>
                                 </tr>
-                                <tr v-for="invoice in invoices.data" :key="invoice.id" class="hover:bg-gray-300">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <tr v-for="invoice in invoices.data" :key="invoice.id" class="hover:bg-gray-50 dark:hover:bg-accent">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-foreground">
                                         {{ invoice.invoice_number }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-muted-foreground">
                                         {{ invoice.customer?.name ?? '—' }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-muted-foreground">
                                         {{ formatCurrency(invoice.amount) }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-muted-foreground">
                                         {{ formatCurrency(invoice.tax) }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-muted-foreground">
                                         {{ formatDate(invoice.due_date) }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -212,7 +212,7 @@ function formatDate(dateString) {
                                         <select
                                             :value="invoice.status"
                                             @change="changeStatus(invoice.id, $event)"
-                                            class="text-xs border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 py-1"
+                                            class="text-xs border-gray-300 dark:border-border dark:bg-secondary dark:text-foreground rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500 py-1"
                                         >
                                             <option value="draft">Draft</option>
                                             <option value="sent">Sent</option>
@@ -255,20 +255,20 @@ function formatDate(dateString) {
                     </div>
 
                     <!-- Pagination -->
-                    <div v-if="invoices.links.length > 3" class="px-6 py-4 border-t border-gray-200 flex flex-wrap gap-1">
+                    <div v-if="invoices.links.length > 3" class="px-6 py-4 border-t border-gray-200 dark:border-border flex flex-wrap gap-1">
                         <template v-for="link in invoices.links" :key="link.label">
                             <Link
                                 v-if="link.url"
                                 :href="link.url"
                                 class="px-3 py-1 text-sm rounded border"
                                 :class="link.active
-                                    ? 'bg-gray-800 text-white border-gray-800'
-                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'"
+                                    ? 'bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500'
+                                    : 'bg-white dark:bg-secondary text-gray-700 dark:text-gray-300 border-gray-300 dark:border-border hover:bg-gray-50 dark:hover:bg-accent'"
                                 v-html="link.label"
                             />
                             <span
                                 v-else
-                                class="px-3 py-1 text-sm rounded border border-gray-200 text-gray-400 cursor-not-allowed"
+                                class="px-3 py-1 text-sm rounded border border-gray-200 dark:border-border text-gray-400 dark:text-gray-500 cursor-not-allowed"
                                 v-html="link.label"
                             />
                         </template>

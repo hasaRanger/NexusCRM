@@ -20,11 +20,11 @@ defineEmits(['confirm', 'cancel']);
 <template>
     <Modal :show="true" @close="$emit('cancel')" maxWidth="md">
         <div class="p-6">
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-lg font-medium text-gray-900 dark:text-foreground">
                 Confirm Action
             </h2>
 
-            <p class="mt-3 text-sm text-gray-600">
+            <p class="mt-3 text-sm text-gray-600 dark:text-muted-foreground">
                 {{ message }}
             </p>
 

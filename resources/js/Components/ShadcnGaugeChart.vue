@@ -42,8 +42,8 @@ const colorAccessor = (d, i) => i === 0 ? '#4f46e5' : '#c7d2fe' // Indigo-600 vs
       />
     </VisSingleContainer>
     <div class="absolute bottom-[25%] flex flex-col items-center">
-      <span class="text-2xl font-extrabold text-gray-900">{{ ((value / parsedTarget) * 100).toFixed(1) }}%</span>
-      <span class="text-sm font-semibold text-gray-500">of {{ parsedTarget }} Target</span>
+      <span class="text-2xl font-extrabold text-gray-900 dark:text-white">{{ ((value / parsedTarget) * 100).toFixed(1) }}%</span>
+      <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">of {{ parsedTarget }} Target</span>
     </div>
   </div>
 </template>

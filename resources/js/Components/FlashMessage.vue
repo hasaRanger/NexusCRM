@@ -12,7 +12,7 @@
         v-if="isVisible && message"
         class="fixed top-4 right-4 z-50 max-w-md"
       >
-        <div class="bg-green-50 border border-green-200 rounded-lg shadow-lg p-4 flex items-start gap-3">
+        <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg shadow-lg p-4 flex items-start gap-3">
           <!-- Success Icon -->
           <div class="flex-shrink-0 mt-0.5">
             <svg class="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -22,7 +22,7 @@
 
           <!-- Message Content -->
           <div class="flex-1">
-            <p class="text-sm font-medium text-green-900">{{ message }}</p>
+            <p class="text-sm font-medium text-green-900 dark:text-green-200">{{ message }}</p>
           </div>
 
           <!-- Close Button -->
