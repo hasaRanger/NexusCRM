@@ -77,7 +77,6 @@
       </div>
 
       <div class="p-2 lg:p-4 relative">
-        <ThemeToggle class="mb-2 mx-auto lg:mx-0" />
         <button
           @click="isProfileOpen = !isProfileOpen"
           class="flex items-center justify-center lg:justify-start w-full lg:space-x-3 text-white hover:text-white focus:bg-indigo-800 dark:focus:bg-indigo-800/60 rounded-md p-2 hover:bg-indigo-800 dark:hover:bg-indigo-800/40 transition-colors ease-in-out"
@@ -106,10 +105,13 @@
                 <p class="text-xs text-gray-500 dark:text-muted-foreground truncate">{{ $page.props.auth.user.email }}</p>
             </div>
           </div>
+          <div class="p-2 flex items-center">
+            <ThemeToggle class="flex items-center font-medium text-sm text-gray-900 dark:text-foreground hover:bg-indigo-300 dark:hover:bg-secondary rounded-md transition-colors relative z-10 cursor-pointer flex-1"/>
+          </div>
           <form @submit.prevent="logout" class="p-2">
             <button
               type="submit"
-              class="w-full flex items-center px-4 py-2 font-medium text-sm text-gray-900 dark:text-foreground hover:bg-gray-300 dark:hover:bg-secondary rounded-md transition-colors relative z-10"
+              class="w-full flex items-center px-3 py-2 font-medium text-sm text-gray-900 dark:text-foreground hover:bg-indigo-300 dark:hover:bg-secondary rounded-md transition-colors relative z-10"
             >
              <LogOut class="w-4 h-4 text-red-600" />
              <span class="ml-3">Logout</span>
