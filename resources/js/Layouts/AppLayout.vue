@@ -81,7 +81,7 @@
           @click="isProfileOpen = !isProfileOpen"
           class="flex items-center justify-center lg:justify-start w-full lg:space-x-3 text-white hover:text-white focus:bg-indigo-800 dark:focus:bg-indigo-800/60 rounded-md p-2 hover:bg-indigo-800 dark:hover:bg-indigo-800/40 transition-colors ease-in-out"
         >
-          <div class="w-8 h-8 rounded-full bg-gray-700 dark:bg-indigo-700 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+          <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
             {{ userInitial }}
           </div>
           <span class="text-sm font-medium flex-1 text-left truncate hidden lg:block">{{ $page.props.auth.user.name }}</span>

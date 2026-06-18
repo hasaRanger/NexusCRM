@@ -11,8 +11,8 @@ const { isDark, toggleTheme } = useTheme()
         class="p-2 rounded-md transition-colors duration-200 focus:outline-none"
         :class="[
             isDark
-                ? 'text-amber-300 hover:bg-indigo-800/60'
-                : 'text-gray-300 hover:bg-indigo-800'
+                ? 'text-amber-300'
+                : 'text-gray-300'
         ]"
         :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
         aria-label="Toggle theme"
