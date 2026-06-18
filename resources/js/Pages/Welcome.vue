@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import { ArrowRight, Users, FileText, Sparkles, TrendingUp, Zap } from 'lucide-vue-next';
+import ThemeToggle from '@/Components/ThemeToggle.vue';
 
 defineProps({
     canLogin: {
@@ -22,17 +23,18 @@ defineProps({
                 <!-- Logo -->
                 <div class="flex items-center gap-2">
                     <img src="/logo.jpg" alt="Logo" class="w-10 h-10 rounded-full object-cover backdrop-blur-sm" />
-                    <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-foreground">
+                    <span class="text-xl font-bold tracking-tight text-foreground dark:text-foreground">
                         NexusCRM
                     </span>
                 </div>
 
                 <!-- Navigation Action Links -->
                 <div v-if="canLogin" class="flex items-center gap-4">
+                    <ThemeToggle class="flex items-center font-medium text-sm text-background dark:text-foreground hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative z-10 cursor-pointer flex-1"/>
                     <Link
                         v-if="$page.props.auth.user"
                         :href="route('dashboard')"
-                        class="px-4 py-2 bg-gray-800 dark:bg-card hover:bg-gray-700 dark:hover:bg-accent text-white text-sm font-medium rounded-md shadow-sm transition"
+                        class="px-4 py-2 text-background bg-indigo-600 dark:bg-indigo-600 hover:bg-indigo-700 dark:hover:bg-indigo-700 text-sm font-medium rounded-md shadow-sm transition"
                     >
                         Go to Dashboard
                     </Link>
@@ -40,14 +42,14 @@ defineProps({
                     <template v-else>
                         <Link
                             :href="route('login')"
-                            class="text-sm font-medium text-gray-600 dark:text-muted-foreground hover:text-gray-900 dark:hover:text-foreground transition-colors"
+                            class="text-sm font-medium text-foreground dark:text-muted-foreground hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                         >
                             Sign In
                         </Link>
                         <Link
                             v-if="canRegister"
                             :href="route('register')"
-                            class="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-400 text-white text-sm font-medium rounded-md shadow-sm transition"
+                            class="px-4 py-2 bg-indigo-600 dark:bg-indigo-600 hover:bg-indigo-700 dark:hover:bg-indigo-700 text-white text-sm font-medium rounded-md shadow-sm transition"
                         >
                             Get Started
                         </Link>
@@ -61,7 +63,7 @@ defineProps({
 
             <!-- Title -->
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-foreground mb-6 leading-tight max-w-4xl mx-auto">
-                Supercharge your sales with <span class="text-indigo-600 dark:text-indigo-400">NexusCRM</span>
+                Supercharge your sales with <span class="text-indigo-700 dark:text-indigo-400 text-8xl">NexusCRM</span>
             </h1>
 
             <!-- Subtitle -->
@@ -74,7 +76,7 @@ defineProps({
                 <Link
                     v-if="$page.props.auth.user"
                     :href="route('dashboard')"
-                    class="w-full sm:w-auto px-6 py-3 bg-gray-800 dark:bg-card hover:bg-gray-700 dark:hover:bg-accent text-white font-medium rounded-md shadow-sm transition flex items-center justify-center gap-2"
+                    class="w-full sm:w-auto px-6 py-3 text-background bg-indigo-600 dark:bg-indigo-600 hover:bg-indigo-700 dark:hover:bg-indigo-700 font-medium rounded-md shadow-sm transition flex items-center justify-center gap-2"
                 >
                     Go to Dashboard
                     <ArrowRight class="w-4 h-4" />
@@ -90,7 +92,7 @@ defineProps({
                     </Link>
                     <Link
                         :href="route('login')"
-                        class="w-full sm:w-auto px-6 py-3 bg-gray-800 dark:bg-card hover:bg-indigo-600 dark:hover:bg-accent text-white font-medium rounded-3xl shadow-sm transition flex items-center justify-center"
+                        class="w-full sm:w-auto px-6 py-3 text-background bg-indigo-600 dark:bg-indigo-600 hover:bg-indigo-700 dark:hover:bg-indigo-700 font-medium rounded-3xl shadow-sm transition flex items-center justify-center"
                     >
                         Sign In
                     </Link>
