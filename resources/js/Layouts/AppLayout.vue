@@ -1,18 +1,18 @@
 <template>
   <Head :title="title" />
   <div class="min-h-screen bg-indigo-200 dark:bg-background flex">
-    
-    <nav class="w-16 lg:w-64 bg-indigo-900 dark:bg-indigo-950 flex flex-col justify-between sticky top-0 h-screen z-20 transition-all duration-300">
-      
-      <div class="bg-indigo-900 dark:bg-indigo-950">
+
+    <nav class="w-16 lg:w-64 bg-indigo-900 dark:bg-indigo-950 flex flex-col justify-between sticky top-0 h-screen z-20">
+
+      <div >
         <div class="h-16 flex items-center justify-center lg:justify-start lg:px-6">
           <Link href="/dashboard">
             <img src="/logo.jpg" alt="Logo"
               class="w-10 h-10 lg:w-12 lg:h-12 rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer ease-in-out">
           </Link>
         </div>
-        
-        <div class="flex flex-col space-y-1 mt-6 px-2 lg:px-3 transition-all ease-in-out">
+
+        <div class="flex flex-col gap-5 space-y-1 mt-3 px-2 lg:px-3 transition-all ease-in-out">
           <Link
             href="/dashboard"
             :class="[
@@ -85,7 +85,7 @@
             {{ userInitial }}
           </div>
           <span class="text-sm font-medium flex-1 text-left truncate hidden lg:block">{{ $page.props.auth.user.name }}</span>
-          <ChevronRight class="w-4 h-4 text-gray-400 hidden lg:block" />            
+          <ChevronRight class="w-4 h-4 text-gray-400 hidden lg:block" />
         </button>
 
         <div
@@ -126,13 +126,13 @@
 
       <!-- Page Heading -->
       <header class="bg-indigo-100 dark:bg-card shadow-sm border-b border-gray-100 dark:border-border text-left" v-if="$slots.header">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <slot name="header" />
         </div>
       </header>
 
       <main class="flex-1 py-8 overflow-y-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <slot />
         </div>
       </main>

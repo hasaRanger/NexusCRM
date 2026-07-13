@@ -62,8 +62,8 @@ const tooltipTriggers = {
     </div>
 
     <!-- Legend -->
-    <div class="flex flex-col justify-center gap-5 col-span-1 ml-10">
-      <div v-for="(item, index) in data" :key="item.name" class="flex items-center gap-3">
+    <div class="flex flex-col justify-center gap-10 col-span-1 ml-10">
+      <div v-for="(item, index) in data" :key="item.name" class="flex items-center gap-5">
         <div class="w-4 h-4 rounded-full shadow-sm flex-shrink-0"
           :style="{ backgroundColor: colors[index % colors.length] }"></div>
         <span class="text-sm font-bold text-foreground whitespace-nowrap">{{ item.name }}</span>
